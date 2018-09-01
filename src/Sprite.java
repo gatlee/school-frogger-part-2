@@ -41,7 +41,7 @@ public class Sprite {
     }
 
     public void render() {
-        image.draw(this.getX(), this.getY());
+        image.drawCentered(this.getX(), this.getY());
 
     }
 }
