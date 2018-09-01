@@ -7,6 +7,7 @@ public class World {
     private SpritesTiled topGrass;
 	private SpritesTiled bottomGrass;
     private SpritesTiled water;
+    private Bus testBus;
 
 	public World() throws SlickException {
 	    //Creates map and player sprites
@@ -20,11 +21,13 @@ public class World {
 		water = new SpritesTiled("assets/water.png",
 				24, 96, 22,
 				6 );
+		testBus = new Bus(100, 100);
 	}
 	
 	public void update(Input input, int delta) {
 		// Update all of the sprites in the game
 		player.update(input, delta);
+		testBus.update(input, delta);
 	}
 	
 	public void render(Graphics g) {
@@ -33,5 +36,6 @@ public class World {
 		bottomGrass.render();
 		water.render();
 		player.render();
+		testBus.render();
 	}
 }

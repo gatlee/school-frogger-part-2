@@ -1,4 +1,3 @@
-import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
@@ -7,7 +6,7 @@ import java.util.Map;
 
 public class MovableSprite extends Sprite {
 
-	private int speed;
+	private float speed;
 	private Map<Integer, Runnable> keyMap = new HashMap<Integer, Runnable>();
 
 	public MovableSprite(String imageSrc, float x, float y) throws SlickException {
@@ -18,11 +17,11 @@ public class MovableSprite extends Sprite {
 	}
 
 	/*****************GETTERS AND SETTERS*****************/
-	public int getSpeed() {
+	public float getSpeed() {
 		return speed;
 	}
 
-	public void setSpeed(int speed) {
+	public void setSpeed(float speed) {
 		this.speed = speed;
 	}
 
