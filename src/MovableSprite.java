@@ -46,16 +46,16 @@ public class MovableSprite extends Sprite {
 	public void move(String direction) {
 		switch (direction) {
 			case "down":
-				this.setY(this.getY() + this.speed);
+				this.setY(this.getY() + this.getSpeed());
 				break;
 			case "up":
-				this.setY(this.getY() - this.speed);
+				this.setY(this.getY() - this.getSpeed());
 				break;
 			case "left":
-				this.setX(this.getX() - this.speed);
+				this.setX(this.getX() - this.getSpeed());
 				break;
 			case "right":
-				this.setX(this.getX() + this.speed);
+				this.setX(this.getX() + this.getSpeed());
 				break;
 		}
 
