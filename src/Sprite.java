@@ -35,13 +35,20 @@ public class Sprite {
         this.setY(y);
     }
 
+    public float getLeft() {
+        return (this.x - this.image.getWidth()/2);
+    }
+    public float getTop() {
+        return (this.y - this.image.getHeight()/2);
+    }
+
 
     //Sprite is non-moving so no need to update
     public void update(Input input, int delta) {
     }
 
     public void render() {
-        image.draw(this.getX(), this.getY());
+        image.draw(this.getLeft(), this.getTop());
 
     }
 }
