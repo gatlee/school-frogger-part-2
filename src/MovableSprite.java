@@ -5,18 +5,15 @@ import org.newdawn.slick.SlickException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MovableSprite extends Sprite{
-
+public class MovableSprite extends Sprite {
 
 	private int speed;
 	private Map<Integer, Runnable> keyMap = new HashMap<Integer, Runnable>();
 
 	public MovableSprite(String imageSrc, float x, float y) throws SlickException {
-		// Why would the constructor need a path to an image, and a coordinate?
         super(imageSrc, x, y);
         this.setSpeed(0);
         this.initialiseKeyBindings();
-
 
 	}
 
@@ -28,6 +25,7 @@ public class MovableSprite extends Sprite{
 	public void setSpeed(int speed) {
 		this.speed = speed;
 	}
+
 	/*****************METHODS*****************/
 	//Initialise keyMap Map with bindings
 	public void initialiseKeyBindings() {}
@@ -43,10 +41,9 @@ public class MovableSprite extends Sprite{
 			}
 		}
 	}
-	
 
+	//Move sprite based on speed
 	public void move(String direction) {
-		/*****************GETTERS AND SETTERS*****************/
 		switch (direction) {
 			case "down":
 				this.setY(this.getY() + this.speed);

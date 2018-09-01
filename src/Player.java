@@ -8,6 +8,9 @@ public class Player extends MovableSprite {
     }
 
 
+    //Player Keymap
+    //TODO: Possibly move keybindings into World class for single source of truth
+
     public void initialiseKeyBindings() {
         this.addKeymap(Input.KEY_DOWN, () -> this.move("down"));
         this.addKeymap(Input.KEY_UP, () -> this.move("up"));

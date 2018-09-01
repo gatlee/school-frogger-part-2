@@ -36,11 +36,11 @@ public class Sprite {
     }
 
 
+    //Sprite is non-moving so no need to update
     public void update(Input input, int delta) {
-
     }
+
     public void render() {
-        // This should be pretty simple.
         image.draw(this.getX(), this.getY());
 
     }

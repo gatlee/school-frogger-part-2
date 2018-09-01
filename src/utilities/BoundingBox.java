@@ -20,6 +20,7 @@ public class BoundingBox {
 		setX(x);
 		setY(y);
 	}
+
 	public BoundingBox(Image img, float x, float y) {
 		setWidth(img.getWidth());
 		setHeight(img.getHeight());

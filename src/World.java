@@ -4,8 +4,8 @@ import org.newdawn.slick.SlickException;
 
 public class World {
     private Sprite player;
+
 	public World() throws SlickException {
-		// Perform initialisation logic
 		player = new Player("assets/frog.png", 0, 0);
 	}
 	
