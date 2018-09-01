@@ -4,14 +4,19 @@ import org.newdawn.slick.SlickException;
 
 public class World {
     private Sprite player;
-    private SpritesTiled grass;
+    private SpritesTiled topGrass;
+	private SpritesTiled bottomGrass;
     private SpritesTiled water;
 
 	public World() throws SlickException {
+	    //Creates map and player sprites
 		player = new Player("assets/frog.png", 512, 720);
-		grass = new SpritesTiled("assets/grass.png",
+		topGrass = new SpritesTiled("assets/grass.png",
 				24, 384, 22,
-				6 );
+				1 );
+		bottomGrass = new SpritesTiled("assets/grass.png",
+				24, 672, 22,
+				1 );
 		water = new SpritesTiled("assets/water.png",
 				24, 96, 22,
 				6 );
@@ -24,7 +29,8 @@ public class World {
 	
 	public void render(Graphics g) {
 		// Draw all of the sprites in the game
-		grass.render();
+		topGrass.render();
+		bottomGrass.render();
 		water.render();
 		player.render();
 	}
