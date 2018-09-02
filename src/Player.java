@@ -1,3 +1,4 @@
+import org.lwjgl.Sys;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
@@ -18,8 +19,6 @@ public class Player extends MovableSprite {
         this.addKeymap(Input.KEY_LEFT, () -> this.move("left"));
         this.addKeymap(Input.KEY_RIGHT, () -> this.move("right"));
     }
-
-
 
 
     public void update(Input input, int delta) {

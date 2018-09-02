@@ -8,6 +8,8 @@ public class Sprite {
     private float x;
     private float y;
     private Image image;
+    public static final int SCREEN_WIDTH = App.SCREEN_WIDTH;
+    public static final int SCREEN_HEIGHT = App.SCREEN_HEIGHT;
 
     public Sprite(String imageSrc, float x, float y) throws SlickException {
         this.setXY(x, y);
@@ -35,7 +37,16 @@ public class Sprite {
         this.setY(y);
     }
 
+    public int getImageWidth() {
+        return this.image.getWidth();
+    }
 
+    public int getImageHeight() {
+        return this.image.getHeight();
+    }
+
+
+    /*****************REGULAR METHODS*****************/
     //Sprite is non-moving so no need to update
     public void update(Input input, int delta) {
     }
@@ -44,4 +55,16 @@ public class Sprite {
         image.drawCentered(this.getX(), this.getY());
 
     }
+
+    //Calculates if sprite image exceeds limits of screen
+    public boolean isOffScreen() {
+        float x = this.getX();
+        float y = this.getY();
+        int widthBuffer = this.getImageWidth() / 2;
+        int heightBuffer = this.getImageHeight() / 2;
+        return (x + widthBuffer < 0 || x - widthBuffer > SCREEN_WIDTH ||
+                y + heightBuffer < 0 || y - heightBuffer > SCREEN_HEIGHT);
+
+    }
+
 }

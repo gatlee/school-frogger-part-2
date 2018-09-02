@@ -42,22 +42,28 @@ public class MovableSprite extends Sprite {
 	}
 
 	//Move sprite based on speed
-	public void move(String direction) {
+	public void move(String direction, int delta) {
+		float difference = this.getSpeed() * delta;
 		switch (direction) {
 			case "down":
-				this.setY(this.getY() + this.getSpeed());
+				this.setY(this.getY() + difference);
 				break;
 			case "up":
-				this.setY(this.getY() - this.getSpeed());
+				this.setY(this.getY() - difference);
 				break;
 			case "left":
-				this.setX(this.getX() - this.getSpeed());
+				this.setX(this.getX() - difference);
 				break;
 			case "right":
-				this.setX(this.getX() + this.getSpeed());
+				this.setX(this.getX() + difference);
 				break;
 		}
 
+	}
+
+	//Move in direction based on speed if no delta specified
+	public void move(String direction) {
+		this.move(direction, 1);
 	}
 	public void contactSprite(MovableSprite other) {
 		// Should be called when one sprite makes contact with another. 
