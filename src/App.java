@@ -20,6 +20,11 @@ public class App extends BasicGame {
     /** screen height, in pixels */
     public static final int SCREEN_HEIGHT = 768;
 
+    /**
+     * tile size (square) , in pixels
+     **/
+    public static final int TILE_SIZE = 48;
+
     private World world;
 
     public App() {
@@ -37,8 +42,7 @@ public class App extends BasicGame {
      * @param delta Time passed since last frame (milliseconds).
      */
     @Override
-    public void update(GameContainer gc, int delta)
-            throws SlickException {
+    public void update(GameContainer gc, int delta) {
         // Get data about the current input (keyboard state).
         Input input = gc.getInput();
         world.update(input, delta);
@@ -48,8 +52,7 @@ public class App extends BasicGame {
      * @param gc The Slick game container object.
      * @param g The Slick graphics object, used for drawing.
      */
-    public void render(GameContainer gc, Graphics g)
-            throws SlickException {
+    public void render(GameContainer gc, Graphics g) {
         world.render(g);
     }
 

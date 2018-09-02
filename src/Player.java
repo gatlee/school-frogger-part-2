@@ -4,7 +4,8 @@ import org.newdawn.slick.SlickException;
 public class Player extends MovableSprite {
     Player(String imageSrc, float x, float y) throws SlickException {
         super(imageSrc, x, y);
-        this.setSpeed(48);
+        //Set distance to move by
+        this.setSpeed(App.TILE_SIZE);
     }
 
 
