@@ -4,6 +4,8 @@ import org.newdawn.slick.SlickException;
 public class Bus extends MovableSprite{
     public static final String BUS_IMAGE_SRC = "assets/bus.png";
     public static final float BUS_SPEED = 0.15f;
+
+
     private float initialXPosition;
     private float initialYPosition;
 
@@ -25,6 +27,10 @@ public class Bus extends MovableSprite{
         //Set initial location of bus to be reset to
         this.initialXPosition = x;
         this.initialYPosition = y;
+    }
+
+    public void setInitialXPosition(float initialXPosition) {
+        this.initialXPosition = initialXPosition;
     }
 
     public String getMovementDirection() {
