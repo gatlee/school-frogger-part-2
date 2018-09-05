@@ -42,6 +42,7 @@ public class BusRow {
             case "left":
                 startX = SCREEN_WIDTH - offset;
                 incrementAmount = (-1);
+                break;
             default:
                 throw new SlickException("Direction invalid or not supported yet");
         }
@@ -69,7 +70,7 @@ public class BusRow {
     }
 
     private boolean isInBounds(float x) {
-        return (x > 0 && x < SCREEN_WIDTH);
+        return (x >= 0 && x <= SCREEN_WIDTH);
     }
 
     //Slick update function
