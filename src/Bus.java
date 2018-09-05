@@ -48,7 +48,6 @@ public class Bus extends MovableSprite{
 
     public void update(Input input, int delta) {
         this.move(getMovementDirection(), delta);
-        System.out.println(this.getX());
 
         if (this.isOffScreen()) {
             this.resetPositionToInitial();
