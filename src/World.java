@@ -3,24 +3,32 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 public class World {
+    public final static String GRASS_IMAGE_SRC = "assets/grass.png";
+    public final static String WATER_IMAGE_SRC = "assets/water.png";
     private Sprite player;
-    private SpritesTiled topGrass;
-	private SpritesTiled bottomGrass;
-    private SpritesTiled water;
+    private SpriteCollection topGrass;
+    private SpriteCollection bottomGrass;
+    private SpriteCollection water;
 	private BusRows busRows;
 
 	public World() throws SlickException {
 	    //Creates map and player sprites
-		player = new Player("assets/frog.png", 512, 720);
-		topGrass = new SpritesTiled("assets/grass.png",
-				24, 384, 22,
-				1 );
-		bottomGrass = new SpritesTiled("assets/grass.png",
+
+        SpriteTiler tiler = new SpriteTiler();
+        player = new Player(512, 720);
+
+        topGrass = new SpriteCollection(
+                tiler.generateSpriteList(new Grass(), 24, 384, 22,
+                        1));
+        bottomGrass = new SpriteCollection(
+                tiler.generateSpriteList(new Grass(),
 				24, 672, 22,
-				1 );
-		water = new SpritesTiled("assets/water.png",
+                        1));
+        water = new SpriteCollection(
+                tiler.generateSpriteList(new Water(),
 				24, 96, 22,
-				6 );
+                        6));
+
 		busRows = new BusRows();
 
 
