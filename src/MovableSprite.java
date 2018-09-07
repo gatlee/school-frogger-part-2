@@ -48,21 +48,31 @@ public class MovableSprite extends Sprite {
     //Move sprite based on speed
     public void move(String direction, int delta) {
         float difference = this.getSpeed() * delta;
+        float nextY = this.getY();
+        float nextX = this.getX();
         switch (direction) {
             case "down":
-                this.setY(this.getY() + difference);
+                nextY += difference;
                 break;
             case "up":
-                this.setY(this.getY() - difference);
+                nextY -= difference;
                 break;
             case "left":
-                this.setX(this.getX() - difference);
+                nextX -= difference;
                 break;
             case "right":
-                this.setX(this.getX() + difference);
+                nextX += difference;
                 break;
         }
+        //Checks if inBounds is satisfied before moving to new position
+        if (this.inBounds(nextX, nextY)) {
+            this.setXY(nextX, nextY);
+        }
 
+    }
+
+    public boolean inBounds(float x, float y) {
+        return true;
     }
 
     //Move in direction based on speed if no delta specified

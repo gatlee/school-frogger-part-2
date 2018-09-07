@@ -4,6 +4,8 @@ import org.newdawn.slick.SlickException;
 
 public class Player extends MovableSprite {
     private static final String PLAYER_IMAGE_SRC = "assets/frog.png";
+    private static final Integer SCREEN_WIDTH = App.SCREEN_WIDTH;
+    private static final Integer SCREEN_HEIGHT = App.SCREEN_HEIGHT;
 
     Player(float x, float y) throws SlickException {
 
@@ -27,6 +29,15 @@ public class Player extends MovableSprite {
     public void update(Input input, int delta) {
         // How can this one method deal with different types of sprites?
         super.update(input, delta);
+    }
+
+    //Returns false if any part of object is out of bounds
+    public boolean inBounds(float x, float y) {
+        return !(x - (this.getImageWidth() / 2f) < 0 ||
+                x + (this.getImageWidth() / 2f) > SCREEN_WIDTH ||
+                y - (this.getImageHeight() / 2f) < 0 ||
+                y + (this.getImageWidth() / 2f) > SCREEN_HEIGHT);
+
     }
 
 }
