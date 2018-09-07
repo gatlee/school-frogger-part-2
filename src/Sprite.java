@@ -11,11 +11,23 @@ public class Sprite {
     public static final int SCREEN_WIDTH = App.SCREEN_WIDTH;
     public static final int SCREEN_HEIGHT = App.SCREEN_HEIGHT;
 
-    public Sprite(String imageSrc, float x, float y) throws SlickException {
+    public Sprite(float x, float y) {
         this.setXY(x, y);
-        this.image = new Image(imageSrc);
+    }
+
+    public Sprite(Sprite other) {
+        this.setXY(other.getX(), other.getY());
+        this.setImage(other.getImage());
     }
     /*****************GETTERS AND SETTERS*****************/
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
+    public Image getImage() {
+        return this.image;
+    }
+
     public float getX() {
         return x;
     }

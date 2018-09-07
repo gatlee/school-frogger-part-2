@@ -3,8 +3,11 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 public class Player extends MovableSprite {
-    Player(String imageSrc, float x, float y) throws SlickException {
-        super(imageSrc, x, y);
+    private static final String PLAYER_IMAGE_SRC = "assets/frog.png";
+
+    Player(float x, float y) throws SlickException {
+
+        super(PLAYER_IMAGE_SRC, x, y);
         //Set distance to move by
         this.setSpeed(App.TILE_SIZE);
     }
