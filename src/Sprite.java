@@ -1,12 +1,9 @@
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
-import org.newdawn.slick.SlickException;
 import utilities.BoundingBox;
 
-import java.util.HashMap;
-import java.util.Map;
 
-public class Sprite implements Collidable {
+public abstract class Sprite implements Collidable {
     private float x;
     private float y;
     private Image image;
