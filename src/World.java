@@ -10,28 +10,17 @@ public class World {
     private SpriteCollection bottomGrass;
     private SpriteCollection water;
 	private SpriteCollection buses;
+	private SpriteCollection background;
 
 	public World() throws SlickException {
 	    //Creates map and player sprites
 
 		//Utility class to generate tiles of sprites in grid fashion
-        SpriteTiler tiler = new SpriteTiler();
 
 		player = new Player(512, 720);
 
-        topGrass = new SpriteCollection(
-                tiler.generateSpriteList(new Grass(), 24, 384, 22,
-                        1));
-        bottomGrass = new SpriteCollection(
-                tiler.generateSpriteList(new Grass(),
-				24, 672, 22,
-                        1));
-        water = new SpriteCollection(
-                tiler.generateSpriteList(new Water(),
-				24, 96, 22,
-                        6));
-
 		buses = new SpriteCollection(BusRows.generateBusRows());
+		background = new SpriteCollection(Background.generateBackgroundObjectsList());
 
 
 
@@ -42,7 +31,7 @@ public class World {
 		player.update(input, delta);
 		buses.update(input, delta);
 		checkCollision(player, buses);
-		checkCollision(player, water);
+		checkCollision(player, background);
 	}
 
 
@@ -61,10 +50,8 @@ public class World {
 
 	public void render(Graphics g) {
 		// Draw all of the sprites in the game
-		topGrass.render();
-		bottomGrass.render();
-		water.render();
-		player.render();
+		background.render();
 		buses.render();
+		player.render();
 	}
 }
