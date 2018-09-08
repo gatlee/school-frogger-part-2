@@ -6,22 +6,23 @@ import utilities.BoundingBox;
 import java.util.List;
 
 public class Player extends MovableSprite implements Collidable {
+    //Constants
     private static final String PLAYER_IMAGE_SRC = "assets/frog.png";
     private static final Integer SCREEN_WIDTH = App.SCREEN_WIDTH;
     private static final Integer SCREEN_HEIGHT = App.SCREEN_HEIGHT;
 
 
     Player(float x, float y) throws SlickException {
-
         super(PLAYER_IMAGE_SRC, x, y);
+
         //Set distance to move by
         this.setSpeed(App.TILE_SIZE);
     }
 
 
-    //Player Keymap
     //TODO: Possibly move keybindings into World class for single source of truth
 
+    //Player Keymap
     public void initialiseKeyBindings() {
         this.addKeymap(Input.KEY_DOWN, () -> this.move("down"));
         this.addKeymap(Input.KEY_UP, () -> this.move("up"));
@@ -46,7 +47,6 @@ public class Player extends MovableSprite implements Collidable {
 
     //Exits if collides with Water or Bus
     public void onCollision(Collidable other) {
-
         if (other instanceof Water || other instanceof Bus) {
             App.exit();
         }
