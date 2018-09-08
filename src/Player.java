@@ -12,6 +12,7 @@ public class Player extends MovableSprite implements Collidable {
     private static final Integer SCREEN_HEIGHT = App.SCREEN_HEIGHT;
 
 
+    /*****************CONSTRUCTORS*****************/
     Player(float x, float y) throws SlickException {
         super(PLAYER_IMAGE_SRC, x, y);
 
@@ -19,7 +20,7 @@ public class Player extends MovableSprite implements Collidable {
         this.setSpeed(App.TILE_SIZE);
     }
 
-
+    /*****************METHODS*****************/
     //TODO: Possibly move keybindings into World class for single source of truth
 
     //Player Keymap

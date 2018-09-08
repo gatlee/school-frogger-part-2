@@ -13,6 +13,7 @@ public abstract class Sprite implements Collidable {
 
     private BoundingBox boundingBox;
 
+    /*****************CONSTRUCTORS*****************/
     public Sprite(float x, float y) {
         this.boundingBox = new BoundingBox(x, y, App.TILE_SIZE, App.TILE_SIZE);
         this.setXY(x, y);
@@ -23,6 +24,8 @@ public abstract class Sprite implements Collidable {
         this(other.getX(), other.getY());
         this.setImage(other.getImage());
     }
+
+
     /*****************GETTERS AND SETTERS*****************/
     public void setImage(Image image) {
         this.image = image;
@@ -96,10 +99,10 @@ public abstract class Sprite implements Collidable {
     }
 
     public void onCollision(Collidable other) {
-        //Do nothing
+        //Do nothing on collision
     }
 
-    //Checks if intersecting
+    //Checks if intersecting with other
     public boolean isIntersectingWith(Collidable other) {
         BoundingBox otherBoundingBox = other.getBoundingBox();
         return (getBoundingBox().intersects(otherBoundingBox));

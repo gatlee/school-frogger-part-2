@@ -3,22 +3,13 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 public class World {
-    public final static String GRASS_IMAGE_SRC = "assets/grass.png";
-    public final static String WATER_IMAGE_SRC = "assets/water.png";
     private Sprite player;
-    private SpriteCollection topGrass;
-    private SpriteCollection bottomGrass;
-    private SpriteCollection water;
 	private SpriteCollection buses;
 	private SpriteCollection background;
 
 	public World() throws SlickException {
-	    //Creates map and player sprites
-
-		//Utility class to generate tiles of sprites in grid fashion
-
+		//Initialise Entities
 		player = new Player(512, 720);
-
 		buses = new SpriteCollection(BusRows.generateBusRows());
 		background = new SpriteCollection(Background.generateBackgroundObjectsList());
 
@@ -34,24 +25,26 @@ public class World {
 		checkCollision(player, background);
 	}
 
+	public void render(Graphics g) {
+		// Draw all of the sprites in the game
+		background.render();
+		buses.render();
+		player.render();
+	}
 
+	//Checks collisions with others
 	public static void checkCollision(Sprite a, Collidable b) {
 		if (a.isIntersectingWith(b)) {
+			//Activate their onCollisionEvents
 			a.onCollision(b);
 			b.onCollision(a);
 		}
 	}
 
 	public static void checkCollision(Sprite a, SpriteCollection b) {
+		//Iterate through sprite collection and check their collision
 		for (Sprite sprite : b.getSprites()) {
 			checkCollision(a, sprite);
 		}
-	}
-
-	public void render(Graphics g) {
-		// Draw all of the sprites in the game
-		background.render();
-		buses.render();
-		player.render();
 	}
 }
