@@ -12,12 +12,12 @@ public final class Background {
     };
 
 
-    public static final int TILE_SIZE = App.TILE_SIZE;
-    public static final int TOP_PADDING = 96;
-    public static final int LEFT_PADDING = TILE_SIZE / 2;
+    private static final int TILE_SIZE = App.TILE_SIZE;
+    private static final int TOP_PADDING = 96;
+    private static final int LEFT_PADDING = TILE_SIZE / 2;
 
-    public static final int SCREEN_WIDTH = App.SCREEN_WIDTH;
-    public static final int TILES_WIDE = SCREEN_WIDTH / TILE_SIZE + 1;
+    private static final int SCREEN_WIDTH = App.SCREEN_WIDTH;
+    private static final int TILES_WIDE = SCREEN_WIDTH / TILE_SIZE + 1;
 
     public static List<Sprite> generateBackgroundObjectsList() throws SlickException {
         List<Sprite> output = new LinkedList<Sprite>();

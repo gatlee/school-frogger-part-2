@@ -7,8 +7,8 @@ public abstract class Sprite implements Collidable {
     private float x;
     private float y;
     private Image image;
-    public static final int SCREEN_WIDTH = App.SCREEN_WIDTH;
-    public static final int SCREEN_HEIGHT = App.SCREEN_HEIGHT;
+    private static final int SCREEN_WIDTH = App.SCREEN_WIDTH;
+    private static final int SCREEN_HEIGHT = App.SCREEN_HEIGHT;
 
 
     private BoundingBox boundingBox;
@@ -79,7 +79,7 @@ public abstract class Sprite implements Collidable {
     }
 
     //Calculates if sprite image exceeds limits of screen
-    public boolean isOffScreen() {
+    private boolean isOffScreen() {
         float x = this.getX();
         float y = this.getY();
         int widthBuffer = this.getImageWidth() / 2;
@@ -89,6 +89,7 @@ public abstract class Sprite implements Collidable {
 
     }
 
+    //Updates Location of bounding box
     public void updateBoundingBox() {
         this.boundingBox.setX(this.getX());
         this.boundingBox.setY(this.getY());
@@ -98,6 +99,7 @@ public abstract class Sprite implements Collidable {
         //Do nothing
     }
 
+    //Checks if intersecting
     public boolean isIntersectingWith(Collidable other) {
         BoundingBox otherBoundingBox = other.getBoundingBox();
         return (getBoundingBox().intersects(otherBoundingBox));
