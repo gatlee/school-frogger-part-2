@@ -1,46 +1,37 @@
-import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class BusRows {
-    private List<BusRow> busRows;
 
-    public BusRows() throws SlickException {
+    public BusRows() {
+    }
 
-        busRows = new ArrayList<BusRow>();
-
-        //Hard coded positions. Better to change this later on
-        addBusRow("right", 432, 48, 6.5f);
-        addBusRow("left", 480, 0, 5f);
-        addBusRow("right", 528, 64, 12f);
-        addBusRow("left", 576, 128, 5f);
-        addBusRow("right", 624, 250, 6.5f);
+    //Generates a row of buses using
+    private static List<Bus> generateBusRow(String direction, float yPosition,
+                                            int offset, float tilesApart) throws SlickException {
+        BusRow busRow = new BusRow();
+        return busRow.generateBusesArray(direction, yPosition, offset, tilesApart);
 
 
     }
 
-    //Add a bus row
-    private void addBusRow(String direction, float yPosition,
-                           int offset, float tilesApart) throws SlickException {
+    //Generate array of all buses and returns it
+    public static List<Sprite> generateBusRows() throws SlickException {
+        List<Sprite> allBuses = new ArrayList<Sprite>();
 
-        busRows.add(new BusRow(direction, yPosition, offset, tilesApart));
+        //Hardcoded for purposes of project 1
+        allBuses.addAll(generateBusRow("right", 432, 48, 6.5f));
+        allBuses.addAll(generateBusRow("left", 480, 0, 5f));
+        allBuses.addAll(generateBusRow("right", 528, 64, 12f));
+        allBuses.addAll(generateBusRow("left", 576, 128, 5f));
+        allBuses.addAll(generateBusRow("right", 624, 250, 6.5f));
+
+        return allBuses;
+
+
+
     }
 
-    //Render all the buses
-    public void render() {
-        for (BusRow busRow : busRows) {
-            busRow.render();
-        }
-
-    }
-
-    //Update all the buses
-    public void update(Input input, int delta) {
-        for (BusRow busRow : busRows) {
-            busRow.update(input, delta);
-        }
-    }
 }

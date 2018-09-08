@@ -9,7 +9,7 @@ public class World {
     private SpriteCollection topGrass;
     private SpriteCollection bottomGrass;
     private SpriteCollection water;
-	private BusRows busRows;
+	private SpriteCollection busRows;
 
 	public World() throws SlickException {
 	    //Creates map and player sprites
@@ -31,7 +31,7 @@ public class World {
 				24, 96, 22,
                         6));
 
-		busRows = new BusRows();
+		busRows = new SpriteCollection(BusRows.generateBusRows());
 
 
 
