@@ -1,11 +1,15 @@
 import org.lwjgl.Sys;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import utilities.BoundingBox;
 
-public class Player extends MovableSprite {
+import java.util.List;
+
+public class Player extends MovableSprite implements Collidable {
     private static final String PLAYER_IMAGE_SRC = "assets/frog.png";
     private static final Integer SCREEN_WIDTH = App.SCREEN_WIDTH;
     private static final Integer SCREEN_HEIGHT = App.SCREEN_HEIGHT;
+
 
     Player(float x, float y) throws SlickException {
 
@@ -39,5 +43,21 @@ public class Player extends MovableSprite {
                 y + (this.getImageWidth() / 2f) > SCREEN_HEIGHT);
 
     }
+
+    //Exits if collides with Water or Bus
+    public void onCollision(Collidable other) {
+
+        if (other instanceof Water || other instanceof Bus) {
+            App.exit();
+        }
+
+    }
+
+    //Returns true if bounding boxes intersect
+    public boolean isIntersectingWith(Collidable other) {
+        BoundingBox otherBoundingBox = other.getBoundingBox();
+        return (getBoundingBox().intersects(otherBoundingBox));
+    }
+
 
 }

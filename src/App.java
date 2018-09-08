@@ -27,6 +27,8 @@ public class App extends BasicGame {
 
     private World world;
 
+    private AppGameContainer app;
+
     public App() {
         super("Shadow Leap");
     }
@@ -62,9 +64,13 @@ public class App extends BasicGame {
     public static void main(String[] args)
             throws SlickException {
         AppGameContainer app = new AppGameContainer(new App());
-        app.setShowFPS(false);
+        app.setShowFPS(true);
         app.setDisplayMode(SCREEN_WIDTH, SCREEN_HEIGHT, false);
         app.start();
+    }
+
+    public static void exit() {
+        System.exit(-1);
     }
 
 }

@@ -1,7 +1,8 @@
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import utilities.BoundingBox;
 
-public class Bus extends MovableSprite{
+public class Bus extends MovableSprite {
     public static final String BUS_IMAGE_SRC = "assets/bus.png";
     public static final float BUS_SPEED = 0.15f;
 
@@ -47,6 +48,7 @@ public class Bus extends MovableSprite{
     }
 
     public void update(Input input, int delta) {
+        super.update(input, delta);
         this.move(getMovementDirection(), delta);
 
         if (this.isOffScreen()) {
@@ -58,5 +60,10 @@ public class Bus extends MovableSprite{
     private void resetPositionToInitial() {
         this.setXY(this.initialXPosition, this.initialYPosition);
     }
+
+    public void onCollision(Collidable other) {
+        //Do Nothing
+    }
+
 }
 

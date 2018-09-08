@@ -5,7 +5,7 @@ import org.newdawn.slick.SlickException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MovableSprite extends Sprite {
+public abstract class MovableSprite extends Sprite {
 
     private float speed;
     private Map<Integer, Runnable> keyMap = new HashMap<Integer, Runnable>();
@@ -43,6 +43,7 @@ public class MovableSprite extends Sprite {
                 keyMap.get(key).run();
             }
         }
+        this.updateBoundingBox();
     }
 
     //Move sprite based on speed

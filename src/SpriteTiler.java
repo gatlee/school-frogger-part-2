@@ -14,27 +14,24 @@ public class SpriteTiler {
                                            float topLeftSpriteYLocation,
                                            int numberOfSpritesRight,
                                            int numberOfSpritesDown) {
-        LinkedList<Sprite> list = new LinkedList<Sprite>();
+
+        LinkedList list = new LinkedList<>();
         int height = numberOfSpritesDown;
         int width = numberOfSpritesRight;
 
         int difference = App.TILE_SIZE;
 
+        /* Iterate through width and height to generate sprites at the
+        correct positions and add to list*/
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 Sprite currentSprite = new Sprite(exampleSprite);
                 currentSprite.setX(topLeftSpriteXLocation + i * difference);
                 currentSprite.setY(topLeftSpriteYLocation + j * difference);
                 list.add(currentSprite);
-                        /*
-                        = new SpriteType(
-                        this.imageSrc,
-                        this.topLeftSpriteXLocation + i*difference,
-                        this.topLeftSpriteYLocation + j*difference);
-                        */
-
             }
         }
+
         return list;
     }
 }

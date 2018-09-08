@@ -9,7 +9,7 @@ public class World {
     private SpriteCollection topGrass;
     private SpriteCollection bottomGrass;
     private SpriteCollection water;
-	private SpriteCollection busRows;
+	private SpriteCollection buses;
 
 	public World() throws SlickException {
 	    //Creates map and player sprites
@@ -31,7 +31,7 @@ public class World {
 				24, 96, 22,
                         6));
 
-		busRows = new SpriteCollection(BusRows.generateBusRows());
+		buses = new SpriteCollection(BusRows.generateBusRows());
 
 
 
@@ -40,15 +40,31 @@ public class World {
 	public void update(Input input, int delta) {
 		// Update all of the sprites in the game
 		player.update(input, delta);
-		busRows.update(input, delta);
+		buses.update(input, delta);
+		checkCollision(player, buses);
+		checkCollision(player, water);
 	}
-	
+
+
+	public static void checkCollision(Sprite a, Collidable b) {
+		if (a.isIntersectingWith(b)) {
+			a.onCollision(b);
+			b.onCollision(a);
+		}
+	}
+
+	public static void checkCollision(Sprite a, SpriteCollection b) {
+		for (Sprite sprite : b.getSprites()) {
+			checkCollision(a, sprite);
+		}
+	}
+
 	public void render(Graphics g) {
 		// Draw all of the sprites in the game
 		topGrass.render();
 		bottomGrass.render();
 		water.render();
 		player.render();
-		busRows.render();
+		buses.render();
 	}
 }
