@@ -1,6 +1,7 @@
 /**
  * Sample Project for SWEN20003: Object Oriented Software Development 2018
  * by Eleanor McMurtry, University of Melbourne
+ * Created by Gatlee Kaw (994017) Programming is Fun! (And Algorithms Are Fun!)
  */
 
 import org.newdawn.slick.AppGameContainer;
