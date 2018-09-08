@@ -2,6 +2,7 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class BusRows {
@@ -9,7 +10,6 @@ public class BusRows {
 
     public BusRows() throws SlickException {
 
-        //TODO: Change to linked list
         busRows = new ArrayList<BusRow>();
 
         //Hard coded positions. Better to change this later on
@@ -29,6 +29,7 @@ public class BusRows {
         busRows.add(new BusRow(direction, yPosition, offset, tilesApart));
     }
 
+    //Render all the buses
     public void render() {
         for (BusRow busRow : busRows) {
             busRow.render();
@@ -36,6 +37,7 @@ public class BusRows {
 
     }
 
+    //Update all the buses
     public void update(Input input, int delta) {
         for (BusRow busRow : busRows) {
             busRow.update(input, delta);

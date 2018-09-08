@@ -14,8 +14,10 @@ public class World {
 	public World() throws SlickException {
 	    //Creates map and player sprites
 
+		//Utility class to generate tiles of sprites in grid fashion
         SpriteTiler tiler = new SpriteTiler();
-        player = new Player(512, 720);
+
+		player = new Player(512, 720);
 
         topGrass = new SpriteCollection(
                 tiler.generateSpriteList(new Grass(), 24, 384, 22,

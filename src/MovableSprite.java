@@ -64,14 +64,15 @@ public class MovableSprite extends Sprite {
                 nextX += difference;
                 break;
         }
-        //Checks if inBounds is satisfied before moving to new position
-        if (this.inBounds(nextX, nextY)) {
+
+        //Checks if isAcceptableMovement is satisfied before moving to new position
+        if (this.isAcceptableMovement(nextX, nextY)) {
             this.setXY(nextX, nextY);
         }
 
     }
 
-    public boolean inBounds(float x, float y) {
+    public boolean isAcceptableMovement(float x, float y) {
         return true;
     }
 

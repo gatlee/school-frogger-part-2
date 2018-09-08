@@ -32,7 +32,7 @@ public class Player extends MovableSprite {
     }
 
     //Returns false if any part of object is out of bounds
-    public boolean inBounds(float x, float y) {
+    public boolean isAcceptableMovement(float x, float y) {
         return !(x - (this.getImageWidth() / 2f) < 0 ||
                 x + (this.getImageWidth() / 2f) > SCREEN_WIDTH ||
                 y - (this.getImageHeight() / 2f) < 0 ||
