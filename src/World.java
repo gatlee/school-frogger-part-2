@@ -3,35 +3,15 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 public class World {
-    public final static String GRASS_IMAGE_SRC = "assets/grass.png";
-    public final static String WATER_IMAGE_SRC = "assets/water.png";
     private Sprite player;
-    private SpriteCollection topGrass;
-    private SpriteCollection bottomGrass;
-    private SpriteCollection water;
-	private SpriteCollection busRows;
+	private SpriteCollection buses;
+	private SpriteCollection background;
 
 	public World() throws SlickException {
-	    //Creates map and player sprites
-
-		//Utility class to generate tiles of sprites in grid fashion
-        SpriteTiler tiler = new SpriteTiler();
-
+		//Initialise Entities
 		player = new Player(512, 720);
-
-        topGrass = new SpriteCollection(
-                tiler.generateSpriteList(new Grass(), 24, 384, 22,
-                        1));
-        bottomGrass = new SpriteCollection(
-                tiler.generateSpriteList(new Grass(),
-				24, 672, 22,
-                        1));
-        water = new SpriteCollection(
-                tiler.generateSpriteList(new Water(),
-				24, 96, 22,
-                        6));
-
-		busRows = new SpriteCollection(BusRows.generateBusRows());
+		buses = new SpriteCollection(BusRows.generateBusRows());
+		background = new SpriteCollection(Background.generateBackgroundObjectsList());
 
 
 
@@ -40,15 +20,31 @@ public class World {
 	public void update(Input input, int delta) {
 		// Update all of the sprites in the game
 		player.update(input, delta);
-		busRows.update(input, delta);
+		buses.update(input, delta);
+		checkCollision(player, buses);
+		checkCollision(player, background);
 	}
-	
+
 	public void render(Graphics g) {
 		// Draw all of the sprites in the game
-		topGrass.render();
-		bottomGrass.render();
-		water.render();
+		background.render();
+		buses.render();
 		player.render();
-		busRows.render();
+	}
+
+	//Checks collisions with others
+	public static void checkCollision(Sprite a, Collidable b) {
+		if (a.isIntersectingWith(b)) {
+			//Activate their onCollisionEvents
+			a.onCollision(b);
+			b.onCollision(a);
+		}
+	}
+
+	public static void checkCollision(Sprite a, SpriteCollection b) {
+		//Iterate through sprite collection and check their collision
+		for (Sprite sprite : b.getSprites()) {
+			checkCollision(a, sprite);
+		}
 	}
 }

@@ -1,24 +1,31 @@
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
-import org.newdawn.slick.SlickException;
+import utilities.BoundingBox;
 
-import java.util.HashMap;
-import java.util.Map;
-public class Sprite {
+
+public abstract class Sprite implements Collidable {
     private float x;
     private float y;
     private Image image;
-    public static final int SCREEN_WIDTH = App.SCREEN_WIDTH;
-    public static final int SCREEN_HEIGHT = App.SCREEN_HEIGHT;
+    private static final int SCREEN_WIDTH = App.SCREEN_WIDTH;
+    private static final int SCREEN_HEIGHT = App.SCREEN_HEIGHT;
 
+
+    private BoundingBox boundingBox;
+
+    /*****************CONSTRUCTORS*****************/
     public Sprite(float x, float y) {
+        this.boundingBox = new BoundingBox(x, y, App.TILE_SIZE, App.TILE_SIZE);
         this.setXY(x, y);
+        this.updateBoundingBox();
     }
 
     public Sprite(Sprite other) {
-        this.setXY(other.getX(), other.getY());
+        this(other.getX(), other.getY());
         this.setImage(other.getImage());
     }
+
+
     /*****************GETTERS AND SETTERS*****************/
     public void setImage(Image image) {
         this.image = image;
@@ -34,6 +41,7 @@ public class Sprite {
 
     public void setX(float x) {
         this.x = x;
+        this.boundingBox.setX(x);
     }
 
     public float getY() {
@@ -42,6 +50,7 @@ public class Sprite {
 
     public void setY(float y) {
         this.y = y;
+        this.boundingBox.setY(y);
     }
 
     public void setXY(float x, float y) {
@@ -55,6 +64,10 @@ public class Sprite {
 
     public int getImageHeight() {
         return this.image.getHeight();
+    }
+
+    public BoundingBox getBoundingBox() {
+        return boundingBox;
     }
 
 
@@ -79,4 +92,20 @@ public class Sprite {
 
     }
 
+    //Updates Location of bounding box
+    public void updateBoundingBox() {
+        this.boundingBox.setX(this.getX());
+        this.boundingBox.setY(this.getY());
+    }
+
+    public void onCollision(Collidable other) {
+        //Do nothing on collision
+    }
+
+    //Checks if intersecting with other
+    public boolean isIntersectingWith(Collidable other) {
+        BoundingBox otherBoundingBox = other.getBoundingBox();
+        return (getBoundingBox().intersects(otherBoundingBox));
+
+    }
 }

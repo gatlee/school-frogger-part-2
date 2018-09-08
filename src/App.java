@@ -1,6 +1,7 @@
 /**
  * Sample Project for SWEN20003: Object Oriented Software Development 2018
  * by Eleanor McMurtry, University of Melbourne
+ * Created by Gatlee Kaw (994017) Programming is Fun! (And Algorithms Are Fun!)
  */
 
 import org.newdawn.slick.AppGameContainer;
@@ -26,6 +27,7 @@ public class App extends BasicGame {
     public static final int TILE_SIZE = 48;
 
     private World world;
+
 
     public App() {
         super("Shadow Leap");
@@ -62,9 +64,14 @@ public class App extends BasicGame {
     public static void main(String[] args)
             throws SlickException {
         AppGameContainer app = new AppGameContainer(new App());
-        app.setShowFPS(false);
+        app.setShowFPS(true);
         app.setDisplayMode(SCREEN_WIDTH, SCREEN_HEIGHT, false);
         app.start();
+    }
+
+    //Exits game
+    public static void exit() {
+        System.exit(-1);
     }
 
 }

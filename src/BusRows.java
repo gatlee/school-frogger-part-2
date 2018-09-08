@@ -3,19 +3,7 @@ import org.newdawn.slick.SlickException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BusRows {
-
-    public BusRows() {
-    }
-
-    //Generates a row of buses using
-    private static List<Bus> generateBusRow(String direction, float yPosition,
-                                            int offset, float tilesApart) throws SlickException {
-        BusRow busRow = new BusRow();
-        return busRow.generateBusesArray(direction, yPosition, offset, tilesApart);
-
-
-    }
+public final class BusRows {
 
     //Generate array of all buses and returns it
     public static List<Sprite> generateBusRows() throws SlickException {
@@ -30,8 +18,15 @@ public class BusRows {
 
         return allBuses;
 
+    }
+
+    private static List<Bus> generateBusRow(String direction, float yPosition,
+                                            int offset, float tilesApart) throws SlickException {
+        BusRow busRow = new BusRow();
+        return busRow.generateBusesArray(direction, yPosition, offset, tilesApart);
 
 
     }
+
 
 }

@@ -1,5 +1,6 @@
 import org.newdawn.slick.Input;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -9,6 +10,10 @@ public class SpriteCollection {
     public SpriteCollection() {
         //Initialise empty list
         sprites = new LinkedList<>();
+    }
+
+    public List<Sprite> getSprites() {
+        return sprites;
     }
 
     public SpriteCollection(List<Sprite> sprites) {
