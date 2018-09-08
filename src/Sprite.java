@@ -79,7 +79,7 @@ public abstract class Sprite implements Collidable {
     }
 
     //Calculates if sprite image exceeds limits of screen
-    private boolean isOffScreen() {
+    public boolean isOffScreen() {
         float x = this.getX();
         float y = this.getY();
         int widthBuffer = this.getImageWidth() / 2;
