@@ -69,7 +69,6 @@ public class App extends BasicGame {
         app.start();
     }
 
-    //Exits game
     public static void exit() {
         System.exit(-1);
     }
