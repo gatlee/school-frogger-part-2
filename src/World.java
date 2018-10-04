@@ -10,7 +10,7 @@ public class World {
 	public World() throws SlickException {
 		//Initialise Entities
 		player = new Player(512, 720);
-		buses = new SpriteCollection(BusRows.generateBusRows());
+		buses = new SpriteCollection(EntityGenerator.getSpriteListFromFile("assets/levels/0.lvl"));
 		background = new SpriteCollection(Background.generateBackgroundObjectsList());
 
 
