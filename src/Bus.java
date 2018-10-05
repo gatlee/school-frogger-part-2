@@ -10,16 +10,7 @@ public class Bus extends Vehicle {
     /*****************CONSTRUCTORS*****************/
     public Bus(float x, float y, String direction) throws SlickException {
         //Set values
-        super(BUS_IMAGE_SRC, x, y);
-        this.setSpeed(BUS_SPEED);
-        this.setMovementDirection(direction);
-
-        //Error checking of initial location
-        if (this.isOffScreen()) {
-            throw new SlickException("ERROR: Bus Initialised Offscreen. " +
-                    "Bus will infinitely reset in background. " +
-                    "Create location elsewhere");
-        }
+        super(BUS_IMAGE_SRC, x, y, direction, BUS_SPEED);
     }
 }
 

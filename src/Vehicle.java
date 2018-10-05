@@ -6,8 +6,15 @@ public abstract class Vehicle extends MovableSprite {
     private float initialYPosition;
     private String movementDirection;
 
-    public Vehicle(String imageSrc, float x, float y) throws SlickException {
+    public Vehicle(String imageSrc, float x, float y, String direction, float speed) throws SlickException {
         super(imageSrc, x, y);
+        this.setSpeed(speed);
+        this.setMovementDirection(direction);
+        if (this.isOffScreen()) {
+            throw new SlickException("ERROR: Bus Initialised Offscreen. " +
+                    "Bus will infinitely reset in background. " +
+                    "Create location elsewhere");
+        }
     }
 
     /*****************GETTERS AND SETTERS*****************/
