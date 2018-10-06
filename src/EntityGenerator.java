@@ -71,7 +71,12 @@ public final class EntityGenerator {
             case "bus":
                 return new Bus(x, y, direction);
             case "bulldozer":
-                break;
+                return new Bulldozer(x, y, direction);
+            case "racecar":
+                return new Racecar(x, y, direction);
+            case "bike":
+                return new Bike(x, y, direction);
+
 
         }
 
