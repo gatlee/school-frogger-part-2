@@ -2,6 +2,8 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 public abstract class Vehicle extends MovableSprite {
+    private final float OFF_SCREEN_X_POS_LEFT;
+    private final float OFF_SCREEN_X_POS_RIGHT;
     private float initialXPosition;
     private float initialYPosition;
     private String movementDirection;
@@ -15,6 +17,8 @@ public abstract class Vehicle extends MovableSprite {
                     "Bus will infinitely reset in background. " +
                     "Create location elsewhere");
         }
+        OFF_SCREEN_X_POS_LEFT = - (this.getImageWidth()/2f);
+        OFF_SCREEN_X_POS_RIGHT = App.SCREEN_WIDTH + (this.getImageWidth()/2f);
     }
 
     /*****************GETTERS AND SETTERS*****************/
@@ -48,13 +52,20 @@ public abstract class Vehicle extends MovableSprite {
         this.move(getMovementDirection(), delta);
 
         if (this.isOffScreen()) {
-            this.resetPositionToInitial();
+            this.resetPosition();
         }
     }
 
     //Reset bus to starting location
-    private void resetPositionToInitial() {
-        this.setXY(this.initialXPosition, this.initialYPosition);
+    private void resetPosition() {
+        if (this.getMovementDirection().equals(LEFT)) {
+            this.setX(OFF_SCREEN_X_POS_RIGHT);
+
+        }
+        else if (this.getMovementDirection().equals(RIGHT)) {
+            this.setX(OFF_SCREEN_X_POS_LEFT);
+        }
+
     }
 
     public void onCollision(Collidable other) {

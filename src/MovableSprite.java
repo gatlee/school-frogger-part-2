@@ -6,7 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public abstract class MovableSprite extends Sprite {
-
+    public static final String RIGHT = "right";
+    public static final String LEFT = "left";
     private float speed;
     private Map<Integer, Runnable> keyMap = new HashMap<Integer, Runnable>();
 
@@ -59,10 +60,10 @@ public abstract class MovableSprite extends Sprite {
             case "up":
                 nextY -= difference;
                 break;
-            case "left":
+            case LEFT:
                 nextX -= difference;
                 break;
-            case "right":
+            case RIGHT:
                 nextX += difference;
                 break;
         }
