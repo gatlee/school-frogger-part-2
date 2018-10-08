@@ -58,9 +58,9 @@ public final class EntityGenerator {
 
         switch (spriteParameters[LVL_SPRITE_TYPE_INDEX]) {
             case "log":
-                break;
+                return new Log(x, y, direction);
             case "longLog":
-                break;
+                return new LongLog(x, y, direction);
             case "water":
                 return new Water(x, y);
             case "grass":
@@ -75,6 +75,8 @@ public final class EntityGenerator {
                 return new RaceCar(x, y, direction);
             case "bike":
                 return new Bike(x, y, direction);
+            case "turtle":
+                return new Turtle(x, y, direction);
 
 
         }
