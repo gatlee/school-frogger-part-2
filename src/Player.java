@@ -1,9 +1,6 @@
-import org.lwjgl.Sys;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import utilities.BoundingBox;
-
-import java.util.List;
 
 public class Player extends MovableSprite implements Collidable {
     //Constants
@@ -49,7 +46,7 @@ public class Player extends MovableSprite implements Collidable {
     //Exits if collides with Water or Bus
     public void onCollision(Collidable other) {
         if (other instanceof Water || other instanceof Bus
-        || other instanceof Bike || other instanceof Racecar) {
+        || other instanceof Bike || other instanceof RaceCar) {
             App.exit();
         }
 

@@ -1,14 +1,14 @@
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
-public abstract class Vehicle extends MovableSprite {
+public abstract class AutonomousSprite extends MovableSprite {
     private final float OFF_SCREEN_X_POS_LEFT;
     private final float OFF_SCREEN_X_POS_RIGHT;
     private float initialXPosition;
     private float initialYPosition;
     private String movementDirection;
 
-    public Vehicle(String imageSrc, float x, float y, String direction, float speed) throws SlickException {
+    public AutonomousSprite(String imageSrc, float x, float y, String direction, float speed) throws SlickException {
         super(imageSrc, x, y);
         this.setSpeed(speed);
         this.setMovementDirection(direction);

@@ -1,8 +1,6 @@
-import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import utilities.BoundingBox;
 
-public class Bus extends Vehicle {
+public class Bus extends AutonomousSprite {
     public static final String BUS_IMAGE_SRC = "assets/bus.png";
     public static final float BUS_SPEED = 0.15f;
 

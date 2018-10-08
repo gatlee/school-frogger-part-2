@@ -2,7 +2,6 @@ import org.newdawn.slick.SlickException;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -73,7 +72,7 @@ public final class EntityGenerator {
             case "bulldozer":
                 return new Bulldozer(x, y, direction);
             case "racecar":
-                return new Racecar(x, y, direction);
+                return new RaceCar(x, y, direction);
             case "bike":
                 return new Bike(x, y, direction);
 
