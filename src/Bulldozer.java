@@ -1,6 +1,6 @@
 import org.newdawn.slick.SlickException;
 
-public class Bulldozer extends Vehicle{
+public class Bulldozer extends Vehicle {
     public static final String IMAGE_SRC = "assets/bulldozer.png";
     public static final float SPEED = 0.05f;
 
