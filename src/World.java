@@ -5,13 +5,11 @@ import org.newdawn.slick.SlickException;
 public class World {
     private Sprite player;
 	private SpriteCollection buses;
-	private SpriteCollection background;
 
 	public World() throws SlickException {
 		//Initialise Entities
 		player = new Player(512, 720);
-		buses = new SpriteCollection(BusRows.generateBusRows());
-		background = new SpriteCollection(Background.generateBackgroundObjectsList());
+		buses = new SpriteCollection(EntityGenerator.getSpriteListFromFile("assets/levels/1.lvl"));
 
 
 
@@ -22,12 +20,10 @@ public class World {
 		player.update(input, delta);
 		buses.update(input, delta);
 		checkCollision(player, buses);
-		checkCollision(player, background);
 	}
 
 	public void render(Graphics g) {
 		// Draw all of the sprites in the game
-		background.render();
 		buses.render();
 		player.render();
 	}

@@ -48,7 +48,8 @@ public class Player extends MovableSprite implements Collidable {
 
     //Exits if collides with Water or Bus
     public void onCollision(Collidable other) {
-        if (other instanceof Water || other instanceof Bus) {
+        if (other instanceof Water || other instanceof Bus
+        || other instanceof Bike || other instanceof Racecar) {
             App.exit();
         }
 
