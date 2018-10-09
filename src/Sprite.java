@@ -1,30 +1,32 @@
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.SlickException;
 import utilities.BoundingBox;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public abstract class Sprite implements Collidable {
+    public static final String RIGHT = "right";
+    public static final String LEFT = "left";
     private float x;
     private float y;
     private Image image;
     private static final int SCREEN_WIDTH = App.SCREEN_WIDTH;
     private static final int SCREEN_HEIGHT = App.SCREEN_HEIGHT;
-
+    private ArrayList<Tags> tags = new ArrayList<>();
 
     private BoundingBox boundingBox;
+    private float speed;
 
     /*****************CONSTRUCTORS*****************/
-    public Sprite(float x, float y) {
-        this.boundingBox = new BoundingBox(x, y, App.TILE_SIZE, App.TILE_SIZE);
+    public Sprite(float x, float y, String imageSrc) throws SlickException {
+        this.setImage(new Image(imageSrc));
+        this.boundingBox = new BoundingBox(x, y, this.getImageWidth(), this.getImageHeight());
         this.setXY(x, y);
         this.updateBoundingBox();
     }
-
-    public Sprite(Sprite other) {
-        this(other.getX(), other.getY());
-        this.setImage(other.getImage());
-    }
-
 
     /*****************GETTERS AND SETTERS*****************/
     public void setImage(Image image) {
@@ -71,9 +73,18 @@ public abstract class Sprite implements Collidable {
     }
 
 
+    /*****************GETTERS AND SETTERS*****************/
+    public float getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(float speed) {
+        this.speed = speed;
+    }
+
     /*****************REGULAR METHODS*****************/
-    //Sprite is non-moving so no need to update
     public void update(Input input, int delta) {
+        this.updateBoundingBox();
     }
 
     public void render() {
@@ -98,7 +109,7 @@ public abstract class Sprite implements Collidable {
         this.boundingBox.setY(this.getY());
     }
 
-    public void onCollision(Collidable other) {
+    public void onCollision(Sprite other) {
         //Do nothing on collision
     }
 
@@ -108,4 +119,55 @@ public abstract class Sprite implements Collidable {
         return (getBoundingBox().intersects(otherBoundingBox));
 
     }
+
+    public void addTag(Tags newTag) {
+        this.tags.add(newTag);
+    }
+    public void addTag(List<Tags> newTags) {
+        this.tags.addAll(newTags);
+    }
+
+    public boolean hasTag(Tags tag) {
+        return this.tags.contains(tag);
+    }
+
+    //Move sprite based on speed
+    public void move(String direction, float delta, float amount) {
+        float difference = amount * delta;
+        float nextY = this.getY();
+        float nextX = this.getX();
+        switch (direction) {
+            case "down":
+                nextY += difference;
+                break;
+            case "up":
+                nextY -= difference;
+                break;
+            case LEFT:
+                nextX -= difference;
+                break;
+            case RIGHT:
+                nextX += difference;
+                break;
+        }
+
+        //Checks if isAcceptableMovement is satisfied before moving to new position
+        if (this.isAcceptableMovement(nextX, nextY)) {
+            this.setXY(nextX, nextY);
+        }
+
+    }
+    public void move(String direction, float delta) {
+        this.move(direction, delta, this.getSpeed());
+    }
+
+    public boolean isAcceptableMovement(float x, float y) {
+        return true;
+    }
+
+    //Move in direction based on speed if no delta specified
+    public void move(String direction) {
+        this.move(direction, 1);
+    }
+
 }

@@ -1,6 +1,6 @@
 import org.newdawn.slick.SlickException;
 
-public class Bike extends Vehicle{
+public class Bike extends AutonomousSprite {
 
     public static final String IMAGE_SRC = "assets/bike.png";
     public static final float SPEED = 0.2f;

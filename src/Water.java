@@ -3,11 +3,10 @@ import org.newdawn.slick.SlickException;
 import utilities.BoundingBox;
 
 public class Water extends Sprite implements Collidable {
+    private static final String IMG_SRC = "assets/water.png";
     /*****************CONSTRUCTORS*****************/
     public Water(float x, float y) throws SlickException {
-        super(x, y);
-        Image image = new Image("assets/water.png");
-        this.setImage(image);
+        super(x, y, IMG_SRC);
     }
 
     public void onCollision(Collidable other) {

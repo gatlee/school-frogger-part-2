@@ -2,7 +2,6 @@ import org.newdawn.slick.SlickException;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -37,10 +36,10 @@ public final class EntityGenerator {
 
     private static String parseDirection(String direction) throws SlickException {
         if (direction.equals("true")) {
-            return "right";
+            return Sprite.RIGHT;
 
         } else if (direction.equals("false")) {
-            return "left";
+            return Sprite.LEFT;
 
         } else {
             throw new SlickException("Parsing Error. Unexpected direction");
@@ -59,9 +58,9 @@ public final class EntityGenerator {
 
         switch (spriteParameters[LVL_SPRITE_TYPE_INDEX]) {
             case "log":
-                break;
+                return new Log(x, y, direction);
             case "longLog":
-                break;
+                return new LongLog(x, y, direction);
             case "water":
                 return new Water(x, y);
             case "grass":
@@ -73,9 +72,11 @@ public final class EntityGenerator {
             case "bulldozer":
                 return new Bulldozer(x, y, direction);
             case "racecar":
-                return new Racecar(x, y, direction);
+                return new RaceCar(x, y, direction);
             case "bike":
                 return new Bike(x, y, direction);
+            case "turtle":
+                return new Turtle(x, y, direction);
 
 
         }
