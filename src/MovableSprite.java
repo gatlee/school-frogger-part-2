@@ -13,8 +13,7 @@ public abstract class MovableSprite extends Sprite {
 
     /*****************CONSTRUCTORS*****************/
     public MovableSprite(String imageSrc, float x, float y) throws SlickException {
-        super(x, y);
-        this.setImage(new Image(imageSrc));
+        super(x, y, imageSrc);
         this.setSpeed(0);
 
     }

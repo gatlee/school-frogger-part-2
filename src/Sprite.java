@@ -1,5 +1,6 @@
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.SlickException;
 import utilities.BoundingBox;
 
 import java.util.ArrayList;
@@ -18,17 +19,12 @@ public abstract class Sprite implements Collidable {
     private BoundingBox boundingBox;
 
     /*****************CONSTRUCTORS*****************/
-    public Sprite(float x, float y) {
-        this.boundingBox = new BoundingBox(x, y, App.TILE_SIZE, App.TILE_SIZE);
+    public Sprite(float x, float y, String imageSrc) throws SlickException {
+        this.setImage(new Image(imageSrc));
+        this.boundingBox = new BoundingBox(x, y, this.getImageWidth(), this.getImageHeight());
         this.setXY(x, y);
         this.updateBoundingBox();
     }
-
-    public Sprite(Sprite other) {
-        this(other.getX(), other.getY());
-        this.setImage(other.getImage());
-    }
-
 
     /*****************GETTERS AND SETTERS*****************/
     public void setImage(Image image) {
