@@ -36,10 +36,10 @@ public final class EntityGenerator {
 
     private static String parseDirection(String direction) throws SlickException {
         if (direction.equals("true")) {
-            return "right";
+            return Sprite.RIGHT;
 
         } else if (direction.equals("false")) {
-            return "left";
+            return Sprite.LEFT;
 
         } else {
             throw new SlickException("Parsing Error. Unexpected direction");
