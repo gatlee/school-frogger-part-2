@@ -8,6 +8,8 @@ import java.util.List;
 
 
 public abstract class Sprite implements Collidable {
+    public static final String RIGHT = "right";
+    public static final String LEFT = "left";
     private float x;
     private float y;
     private Image image;
@@ -15,8 +17,8 @@ public abstract class Sprite implements Collidable {
     private static final int SCREEN_HEIGHT = App.SCREEN_HEIGHT;
     private ArrayList<Tags> tags = new ArrayList<>();
 
-
     private BoundingBox boundingBox;
+    private float speed;
 
     /*****************CONSTRUCTORS*****************/
     public Sprite(float x, float y, String imageSrc) throws SlickException {
@@ -71,9 +73,18 @@ public abstract class Sprite implements Collidable {
     }
 
 
+    /*****************GETTERS AND SETTERS*****************/
+    public float getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(float speed) {
+        this.speed = speed;
+    }
+
     /*****************REGULAR METHODS*****************/
-    //Sprite is non-moving so no need to update
     public void update(Input input, int delta) {
+        this.updateBoundingBox();
     }
 
     public void render() {
@@ -119,4 +130,43 @@ public abstract class Sprite implements Collidable {
     public boolean hasTag(Tags tag) {
         return this.tags.contains(tag);
     }
+
+    /*****************METHODS*****************/
+
+    //Move sprite based on speed
+    public void move(String direction, float delta) {
+        float difference = this.getSpeed() * delta;
+        float nextY = this.getY();
+        float nextX = this.getX();
+        switch (direction) {
+            case "down":
+                nextY += difference;
+                break;
+            case "up":
+                nextY -= difference;
+                break;
+            case LEFT:
+                nextX -= difference;
+                break;
+            case RIGHT:
+                nextX += difference;
+                break;
+        }
+
+        //Checks if isAcceptableMovement is satisfied before moving to new position
+        if (this.isAcceptableMovement(nextX, nextY)) {
+            this.setXY(nextX, nextY);
+        }
+
+    }
+
+    public boolean isAcceptableMovement(float x, float y) {
+        return true;
+    }
+
+    //Move in direction based on speed if no delta specified
+    public void move(String direction) {
+        this.move(direction, 1);
+    }
+
 }

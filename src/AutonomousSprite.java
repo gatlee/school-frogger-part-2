@@ -1,7 +1,7 @@
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
-public abstract class AutonomousSprite extends MovableSprite {
+public abstract class AutonomousSprite extends Sprite {
     private final float OFF_SCREEN_X_POS_LEFT;
     private final float OFF_SCREEN_X_POS_RIGHT;
     private float initialXPosition;
@@ -9,7 +9,7 @@ public abstract class AutonomousSprite extends MovableSprite {
     private String movementDirection;
 
     public AutonomousSprite(String imageSrc, float x, float y, String direction, float speed) throws SlickException {
-        super(imageSrc, x, y);
+        super(x, y, imageSrc);
         this.setSpeed(speed);
         this.setMovementDirection(direction);
         if (this.isOffScreen()) {

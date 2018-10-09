@@ -2,7 +2,7 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import utilities.BoundingBox;
 
-public class Player extends MovableSprite implements Collidable {
+public class Player extends Sprite implements Collidable {
     //Constants
     private static final String PLAYER_IMAGE_SRC = "assets/frog.png";
     private static final Integer SCREEN_WIDTH = App.SCREEN_WIDTH;
@@ -16,7 +16,7 @@ public class Player extends MovableSprite implements Collidable {
 
     /*****************CONSTRUCTORS*****************/
     Player(float x, float y) throws SlickException {
-        super(PLAYER_IMAGE_SRC, x, y);
+        super(x, y, PLAYER_IMAGE_SRC);
 
         //Set distance to move by
         this.setSpeed(App.TILE_SIZE);
