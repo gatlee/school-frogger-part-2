@@ -7,5 +7,6 @@ public class Turtle extends AutonomousSprite {
 
     public Turtle(float x, float y, String direction) throws SlickException {
         super(IMAGE_SRC, x, y, direction, SPEED);
+        this.addTag(Tags.RIDEABLE);
     }
 }

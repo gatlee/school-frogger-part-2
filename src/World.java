@@ -30,7 +30,7 @@ public class World {
 	}
 
 	//Checks collisions with others
-	public static void checkCollision(Sprite a, Collidable b) {
+	public static void checkCollision(Sprite a, Sprite b) {
 		if (a.isIntersectingWith(b)) {
 			//Activate their onCollisionEvents
 			a.onCollision(b);

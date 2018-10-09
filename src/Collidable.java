@@ -5,7 +5,7 @@ import utilities.BoundingBox;
 public interface Collidable {
     BoundingBox getBoundingBox();
 
-    void onCollision(Collidable other);
+    void onCollision(Sprite other);
 
     boolean isIntersectingWith(Collidable other);
 }

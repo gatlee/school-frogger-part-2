@@ -7,5 +7,6 @@ public class LongLog extends Log{
 
     public LongLog(float x, float y, String direction) throws SlickException {
         super(x, y, direction, IMAGE_SRC, SPEED);
+        this.addTag(Tags.RIDEABLE);
     }
 }

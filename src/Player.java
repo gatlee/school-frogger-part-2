@@ -11,6 +11,9 @@ public class Player extends MovableSprite implements Collidable {
     private float initialX;
     private float initialY;
 
+    private boolean touchingHazard;
+    private boolean touchingRidable;
+
     /*****************CONSTRUCTORS*****************/
     Player(float x, float y) throws SlickException {
         super(PLAYER_IMAGE_SRC, x, y);
@@ -28,10 +31,14 @@ public class Player extends MovableSprite implements Collidable {
 
     /*****************METHODS*****************/
 
-
     public void update(Input input, int delta) {
         // How can this one method deal with different types of sprites?
         super.update(input, delta);
+        if (this.touchingHazard && !this.touchingRidable) {
+            this.killPlayer();
+        }
+        this.touchingHazard = false;
+        this.touchingRidable = false;
     }
 
     //Returns false if any part of object is out of bounds
@@ -44,13 +51,22 @@ public class Player extends MovableSprite implements Collidable {
     }
 
     //Exits if collides with Water or Bus
-    public void onCollision(Collidable other) {
+    public void onCollision(Sprite other) {
         if (other instanceof Water || other instanceof Bus
         || other instanceof Bike || other instanceof RaceCar) {
-            this.setXY(initialX, initialY);
+            touchingHazard = true;
+        }
+
+        if (other.hasTag(Tags.RIDEABLE)) {
+            touchingRidable = true;
         }
 
     }
+
+    private void killPlayer() {
+        this.setXY(initialX, initialY);
+    }
+
 
     //Returns true if bounding boxes intersect
     public boolean isIntersectingWith(Collidable other) {

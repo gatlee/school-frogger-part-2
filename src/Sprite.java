@@ -98,7 +98,7 @@ public abstract class Sprite implements Collidable {
         this.boundingBox.setY(this.getY());
     }
 
-    public void onCollision(Collidable other) {
+    public void onCollision(Sprite other) {
         //Do nothing on collision
     }
 
