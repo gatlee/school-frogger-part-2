@@ -29,20 +29,7 @@ public abstract class MovableSprite extends Sprite {
     }
 
     /*****************METHODS*****************/
-    //Initialise keyMap Map with bindings
-
-    public void addKeymap(int key, Runnable function) {
-        this.keyMap.put(key, function);
-    }
-
-    //MovableSprite is static by default so update function is empty
     public void update(Input input, int delta) {
-        //Goes through keymap and runs value function if key is pressed down
-        for (int key : keyMap.keySet()) {
-            if (input.isKeyPressed(key)) {
-                keyMap.get(key).run();
-            }
-        }
         this.updateBoundingBox();
     }
 

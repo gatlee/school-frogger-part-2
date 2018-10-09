@@ -27,9 +27,6 @@ public class Player extends MovableSprite implements Collidable {
     }
 
     /*****************METHODS*****************/
-    //TODO: Possibly move keybindings into World class for single source of truth
-
-    //Player Keymap
 
 
     public void update(Input input, int delta) {
