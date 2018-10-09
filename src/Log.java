@@ -12,4 +12,9 @@ public class Log extends AutonomousSprite {
         super(altImage, x, y, direction, altSpeed);
         this.addTag(Tags.RIDEABLE);
     }
+
+    @Override
+    public void onCollision(Sprite other) {
+        this.addChildSprite(other);
+    }
 }

@@ -131,11 +131,9 @@ public abstract class Sprite implements Collidable {
         return this.tags.contains(tag);
     }
 
-    /*****************METHODS*****************/
-
     //Move sprite based on speed
-    public void move(String direction, float delta) {
-        float difference = this.getSpeed() * delta;
+    public void move(String direction, float delta, float amount) {
+        float difference = amount * delta;
         float nextY = this.getY();
         float nextX = this.getX();
         switch (direction) {
@@ -158,6 +156,9 @@ public abstract class Sprite implements Collidable {
             this.setXY(nextX, nextY);
         }
 
+    }
+    public void move(String direction, float delta) {
+        this.move(direction, delta, this.getSpeed());
     }
 
     public boolean isAcceptableMovement(float x, float y) {

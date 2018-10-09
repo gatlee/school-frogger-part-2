@@ -1,12 +1,16 @@
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
+import java.util.ArrayList;
+
 public abstract class AutonomousSprite extends Sprite {
     private final float OFF_SCREEN_X_POS_LEFT;
     private final float OFF_SCREEN_X_POS_RIGHT;
     private float initialXPosition;
     private float initialYPosition;
     private String movementDirection;
+
+    private ArrayList<Sprite> childSprites = new ArrayList<>();
 
     public AutonomousSprite(String imageSrc, float x, float y, String direction, float speed) throws SlickException {
         super(x, y, imageSrc);
@@ -46,10 +50,15 @@ public abstract class AutonomousSprite extends Sprite {
         this.movementDirection = movementDirection;
     }
 
+    public void addChildSprite(Sprite child) {
+        this.childSprites.add(child);
+    }
+
     /*****************ACTUAL METHODS*****************/
     public void update(Input input, int delta) {
         super.update(input, delta);
         this.move(getMovementDirection(), delta);
+        this.moveChildSprites(delta);
 
         if (this.isOffScreen()) {
             this.resetPosition();
@@ -70,5 +79,12 @@ public abstract class AutonomousSprite extends Sprite {
 
     public void onCollision(Collidable other) {
         //Do Nothing
+    }
+
+    public void moveChildSprites(int delta) {
+        for (Sprite sprite: childSprites) {
+            sprite.move(this.getMovementDirection(), delta, this.getSpeed());
+        }
+        childSprites.clear();
     }
 }

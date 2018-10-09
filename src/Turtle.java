@@ -9,4 +9,9 @@ public class Turtle extends AutonomousSprite {
         super(IMAGE_SRC, x, y, direction, SPEED);
         this.addTag(Tags.RIDEABLE);
     }
+
+    @Override
+    public void onCollision(Sprite other) {
+        this.addChildSprite(other);
+    }
 }
