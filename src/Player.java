@@ -63,7 +63,7 @@ public class Player extends Sprite implements Collidable {
 
     }
 
-    private void killPlayer() {
+    public void killPlayer() {
         this.setXY(initialX, initialY);
     }
 
