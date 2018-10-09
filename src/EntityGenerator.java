@@ -66,7 +66,7 @@ public final class EntityGenerator {
             case "grass":
                 return new Grass(x, y);
             case "tree":
-                break;
+                return new Tree(x, y);
             case "bus":
                 return new Bus(x, y, direction);
             case "bulldozer":
