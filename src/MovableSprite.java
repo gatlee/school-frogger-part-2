@@ -16,7 +16,6 @@ public abstract class MovableSprite extends Sprite {
         super(x, y);
         this.setImage(new Image(imageSrc));
         this.setSpeed(0);
-        this.initialiseKeyBindings();
 
     }
 
@@ -31,7 +30,6 @@ public abstract class MovableSprite extends Sprite {
 
     /*****************METHODS*****************/
     //Initialise keyMap Map with bindings
-    public void initialiseKeyBindings() {}
 
     public void addKeymap(int key, Runnable function) {
         this.keyMap.put(key, function);

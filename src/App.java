@@ -44,7 +44,7 @@ public class App extends BasicGame {
      * @param delta Time passed since last frame (milliseconds).
      */
     @Override
-    public void update(GameContainer gc, int delta) {
+    public void update(GameContainer gc, int delta) throws SlickException {
         // Get data about the current input (keyboard state).
         Input input = gc.getInput();
         world.update(input, delta);

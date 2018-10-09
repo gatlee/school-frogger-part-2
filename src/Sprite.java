@@ -2,6 +2,9 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import utilities.BoundingBox;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public abstract class Sprite implements Collidable {
     private float x;
@@ -9,6 +12,7 @@ public abstract class Sprite implements Collidable {
     private Image image;
     private static final int SCREEN_WIDTH = App.SCREEN_WIDTH;
     private static final int SCREEN_HEIGHT = App.SCREEN_HEIGHT;
+    private ArrayList<Tags> tags = new ArrayList<>();
 
 
     private BoundingBox boundingBox;
@@ -107,5 +111,16 @@ public abstract class Sprite implements Collidable {
         BoundingBox otherBoundingBox = other.getBoundingBox();
         return (getBoundingBox().intersects(otherBoundingBox));
 
+    }
+
+    public void addTag(Tags newTag) {
+        this.tags.add(newTag);
+    }
+    public void addTag(List<Tags> newTags) {
+        this.tags.addAll(newTags);
+    }
+
+    public boolean hasTag(Tags tag) {
+        return this.tags.contains(tag);
     }
 }
