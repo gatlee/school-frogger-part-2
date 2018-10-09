@@ -127,6 +127,10 @@ public abstract class Sprite implements Collidable {
         this.tags.addAll(newTags);
     }
 
+    public void removeTag(Tags tag) {
+        this.tags.remove(tag);
+    }
+
     public boolean hasTag(Tags tag) {
         return this.tags.contains(tag);
     }
