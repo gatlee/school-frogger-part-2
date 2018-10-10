@@ -26,6 +26,9 @@ public class SpriteCollection {
         this.sprites.add(sprite);
     }
 
+    public void addAll(List<Sprite> sprites) {
+        this.sprites.addAll(sprites);
+    }
     public void render() {
         //Render all sprites in collection
         for (Sprite sprite : this.sprites) {

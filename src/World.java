@@ -10,8 +10,7 @@ public class World {
 		//Initialise Entities
 		player = new Player(512, 720);
 		buses = new SpriteCollection(EntityGenerator.getSpriteListFromFile("assets/levels/1.lvl"));
-
-
+		buses.addAll(EntityGenerator.generateHoles());
 
 	}
 	
@@ -21,6 +20,7 @@ public class World {
 		buses.update(input, delta);
 		checkCollision(player, buses);
 		handleInputs(input, delta);
+		checkHoles();
 	}
 
 	public void render(Graphics g) {
@@ -43,6 +43,16 @@ public class World {
 		for (Sprite sprite : b.getSprites()) {
 			checkCollision(a, sprite);
 		}
+	}
+
+	private void checkHoles() {
+		//Check if all holes are filled
+		if (this.buses.getSprites().stream()
+				.filter(sprite -> sprite instanceof Hole)
+				.allMatch(s -> ((Hole) s).isFilled())) {
+		    App.exit();
+		}
+
 	}
 
 	private void handleInputs(Input input, int delta) throws SlickException {

@@ -14,7 +14,19 @@ public final class EntityGenerator {
     private final static int LVL_Y_POS_INDEX = 2;
     private final static int LVL_DIRECTION_INDEX = 3;
 
-    //Generate array of all buses and returns it
+    private final static int[] HOLES_X_POS = new int[]{120, 312, 504, 696, 888};
+    private final static int HOLES_Y_POS = 48;
+    /*Generates Holes*/
+    public static List<Sprite> generateHoles() throws SlickException {
+        List<Sprite> holes = new ArrayList<>();
+        for (int i : HOLES_X_POS) {
+            holes.add(new Hole(i, HOLES_Y_POS));
+
+        }
+        return holes;
+    }
+
+    //Generate array of all sprites and returns it
     public static List<Sprite> getSpriteListFromFile(String fileLocation) throws SlickException {
         List<Sprite> sprites = new ArrayList<Sprite>();
 

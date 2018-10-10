@@ -1,8 +1,6 @@
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-import java.util.ArrayList;
-
 public class Lives {
     private static final int X_POS = 24;
     private static final int Y_POS = 744;
