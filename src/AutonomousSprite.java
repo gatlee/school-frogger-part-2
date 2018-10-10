@@ -2,6 +2,7 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public abstract class AutonomousSprite extends Sprite {
     private final float OFF_SCREEN_X_POS_LEFT;
@@ -51,7 +52,10 @@ public abstract class AutonomousSprite extends Sprite {
     }
 
     public void addChildSprite(Sprite child) {
-        this.childSprites.add(child);
+        if (!this.childSprites.contains(child)) {
+            this.childSprites.add(child);
+
+        }
     }
 
     /*****************ACTUAL METHODS*****************/
@@ -77,15 +81,22 @@ public abstract class AutonomousSprite extends Sprite {
 
     }
 
-    public void onCollision(Collidable other) {
-        //Do Nothing
+    public void onCollision(Sprite other) {
+        if (other instanceof Player) {
+            this.addChildSprite(other);
+        }
+
     }
 
     public void moveChildSprites(int delta) {
+        //Prune child sprites that aren't colliding anymore
+        childSprites.removeIf(s -> !this.isIntersectingWith(s));
         for (Sprite sprite: childSprites) {
-            sprite.move(this.getMovementDirection(), delta, this.getSpeed());
+            if (sprite instanceof Player) {
+                sprite.move(this.getMovementDirection(), delta, this.getSpeed());
+            }
+
         }
-        childSprites.clear();
     }
 
     public void clearChild(Sprite sprite) {
