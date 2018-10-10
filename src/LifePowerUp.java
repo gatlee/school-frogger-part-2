@@ -71,6 +71,10 @@ public class LifePowerUp extends AutonomousSprite{
 
     }
 
+    public boolean isConsumed() {
+        return isConsumed;
+    }
+
     private void updateAbsoluteXYPositions() {
         if (this.parentLog != null) {
             float absoluteXPos = parentLog.getX() - (parentLog.getImageWidth()/2f) + relativeXPos;

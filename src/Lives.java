@@ -35,4 +35,8 @@ public class Lives {
     public void decrementLives() {
         this.numLives--;
     }
+
+    public void incrementLives() {
+        this.numLives++;
+    }
 }

@@ -72,6 +72,11 @@ public class Player extends Sprite implements Collidable {
             touchingRidable = true;
         }
 
+        if (other instanceof LifePowerUp && !((LifePowerUp) other).isConsumed()) {
+            lives.incrementLives();
+
+        }
+
     }
 
     public void killPlayer() {
