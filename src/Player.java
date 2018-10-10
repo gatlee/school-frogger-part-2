@@ -7,12 +7,16 @@ public class Player extends Sprite implements Collidable {
     private static final String PLAYER_IMAGE_SRC = "assets/frog.png";
     private static final Integer SCREEN_WIDTH = App.SCREEN_WIDTH;
     private static final Integer SCREEN_HEIGHT = App.SCREEN_HEIGHT;
+    private static final Integer STARTING_LIVES = 3;
 
     private float initialX;
     private float initialY;
 
     private boolean touchingHazard;
     private boolean touchingRidable;
+
+    private Lives lives;
+
 
     /*****************CONSTRUCTORS*****************/
     Player(float x, float y) throws SlickException {
@@ -22,6 +26,7 @@ public class Player extends Sprite implements Collidable {
         this.setSpeed(App.TILE_SIZE);
         this.initialX = x;
         this.initialY = y;
+        this.lives = new Lives(STARTING_LIVES);
     }
 
     Player (Player other) throws SlickException {
@@ -39,6 +44,12 @@ public class Player extends Sprite implements Collidable {
         }
         this.touchingHazard = false;
         this.touchingRidable = false;
+    }
+
+    @Override
+    public void render() {
+        super.render();
+        lives.render();
     }
 
     //Returns false if any part of object is out of bounds
@@ -65,6 +76,12 @@ public class Player extends Sprite implements Collidable {
 
     public void killPlayer() {
         this.setXY(initialX, initialY);
+        if (lives.getNumLives() <= 0) {
+            App.exit();
+        }
+
+        this.lives.decrementLives();
+
     }
 
 
