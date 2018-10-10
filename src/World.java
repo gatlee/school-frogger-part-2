@@ -30,7 +30,7 @@ public class World {
 	}
 
 	//Checks collisions with others
-	public static void checkCollision(Sprite a, Sprite b) {
+	private static void checkCollision(Sprite a, Sprite b) {
 		if (a.isIntersectingWith(b)) {
 			//Activate their onCollisionEvents
 			a.onCollision(b);
@@ -38,13 +38,14 @@ public class World {
 		}
 	}
 
-	public static void checkCollision(Sprite a, SpriteCollection b) {
+	private static void checkCollision(Sprite a, SpriteCollection b) {
 		//Iterate through sprite collection and check their collision
 		for (Sprite sprite : b.getSprites()) {
 			checkCollision(a, sprite);
 		}
 	}
-	public void handleInputs(Input input, int delta) throws SlickException {
+
+	private void handleInputs(Input input, int delta) throws SlickException {
 	    String direction = "none";
 		if (input.isKeyPressed(Input.KEY_DOWN)) {
             direction ="down";
