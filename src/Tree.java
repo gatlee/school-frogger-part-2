@@ -5,5 +5,6 @@ public class Tree extends Sprite{
     /*****************CONSTRUCTORS*****************/
     public Tree(float x, float y) throws SlickException {
         super(x, y, IMG_SRC);
+        this.addTag(Tags.SOLID);
     }
 }
