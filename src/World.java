@@ -11,6 +11,7 @@ public class World {
 		player = new Player(512, 720);
 		buses = new SpriteCollection(EntityGenerator.getSpriteListFromFile("assets/levels/1.lvl"));
 		buses.addAll(EntityGenerator.generateHoles());
+		buses.addSprite(new LifePowerUp(buses.getSprites()));
 
 	}
 	

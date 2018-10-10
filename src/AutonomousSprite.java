@@ -87,4 +87,10 @@ public abstract class AutonomousSprite extends Sprite {
         }
         childSprites.clear();
     }
+
+    public void clearChild(Sprite sprite) {
+        if (this.childSprites.contains(sprite)) {
+            this.childSprites.remove(sprite);
+        }
+    }
 }
