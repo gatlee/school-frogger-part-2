@@ -51,10 +51,7 @@ public class Turtle extends AutonomousSprite {
     }
 
     private void makeVisible(int cycleStage) {
-        if(!this.hasTag(Tags.RIDEABLE)) {
-            this.addTag(Tags.RIDEABLE);
-
-        }
+        this.addTag(Tags.RIDEABLE);
 
         int imageHeight = this.getImageHeight();
         if (cycleStage < SINK_RISE_TIME) {
@@ -72,9 +69,7 @@ public class Turtle extends AutonomousSprite {
             renderDepth = imageHeight * timePastStart/(float)SINK_RISE_TIME;
         } else {
             renderDepth = imageHeight;
-            if(this.hasTag(Tags.RIDEABLE)) {
-                this.removeTag(Tags.RIDEABLE);
-            }
+            this.removeTag(Tags.RIDEABLE);
         }
     }
 

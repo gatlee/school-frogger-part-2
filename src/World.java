@@ -58,13 +58,13 @@ public class World {
 	private void handleInputs(Input input, int delta) throws SlickException {
 	    String direction = "none";
 		if (input.isKeyPressed(Input.KEY_DOWN)) {
-            direction ="down";
+            direction = Sprite.DOWN;
 		} else if (input.isKeyPressed(Input.KEY_UP)) {
-			direction ="up";
+			direction = Sprite.UP;
 		} else if (input.isKeyPressed(Input.KEY_LEFT)) {
-			direction ="left";
+			direction = Sprite.LEFT;
 		} else if (input.isKeyPressed(Input.KEY_RIGHT)) {
-            direction ="right";
+            direction = Sprite.RIGHT;
 		}
 
 		if (!direction.equals("none")) {
