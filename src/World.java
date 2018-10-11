@@ -4,29 +4,29 @@ import org.newdawn.slick.SlickException;
 
 public class World {
     private Player player;
-	private SpriteCollection buses;
+	private SpriteCollection sprites;
 
 	public World() throws SlickException {
 		//Initialise Entities
 		player = new Player(512, 720);
-		buses = new SpriteCollection(EntityGenerator.getSpriteListFromFile("assets/levels/1.lvl"));
-		buses.addAll(EntityGenerator.generateHoles());
-		buses.addSprite(new LifePowerUp(buses.getSprites()));
+		sprites = new SpriteCollection(EntityGenerator.getSpriteListFromFile("assets/levels/1.lvl"));
+		sprites.addAll(EntityGenerator.generateHoles());
+		sprites.addSprite(new LifePowerUp(sprites.getSprites()));
 
 	}
 	
 	public void update(Input input, int delta) throws SlickException {
 		// Update all of the sprites in the game
 		player.update(input, delta);
-		buses.update(input, delta);
-		checkCollision(player, buses);
+		sprites.update(input, delta);
+		checkCollision(player, sprites);
 		handleInputs(input, delta);
 		checkHoles();
 	}
 
 	public void render(Graphics g) {
 		// Draw all of the sprites in the game
-		buses.render();
+		sprites.render();
 		player.render();
 	}
 
@@ -48,7 +48,7 @@ public class World {
 
 	private void checkHoles() {
 		//Check if all holes are filled
-		if (this.buses.getSprites().stream()
+		if (this.sprites.getSprites().stream()
 				.filter(sprite -> sprite instanceof Hole)
 				.allMatch(s -> ((Hole) s).isFilled())) {
 		    App.exit();
@@ -72,7 +72,7 @@ public class World {
 			Player testPlayer = new Player(player);
 			testPlayer.move(direction);
 			boolean validMovement = true;
-			for (Sprite sprite : buses.getSprites()) {
+			for (Sprite sprite : sprites.getSprites()) {
 			    boolean isSolid = sprite.hasTag(Tags.SOLID);
 				if (testPlayer.isIntersectingWith(sprite) && isSolid) {
 					validMovement = false;
