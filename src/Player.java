@@ -77,6 +77,10 @@ public class Player extends Sprite implements Collidable {
 
         }
 
+        if (other instanceof Hole) {
+            this.setXY(initialX, initialY);
+        }
+
     }
 
     public void killPlayer() {

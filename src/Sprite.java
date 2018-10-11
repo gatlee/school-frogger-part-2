@@ -103,6 +103,7 @@ public abstract class Sprite implements Collidable {
     public void setXY(float x, float y) {
         this.setX(x);
         this.setY(y);
+        this.updateBoundingBox();
     }
 
     /**
