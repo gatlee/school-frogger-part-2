@@ -3,15 +3,15 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 public class World {
+	private static final int NUM_LEVELS = 2;
     private Player player;
 	private SpriteCollection sprites;
+	private int currentLevel = -1;
 
 	public World() throws SlickException {
 		//Initialise Entities
 		player = new Player(512, 720);
-		sprites = new SpriteCollection(EntityGenerator.getSpriteListFromFile("assets/levels/1.lvl"));
-		sprites.addAll(EntityGenerator.generateHoles());
-		sprites.addSprite(new LifePowerUp(sprites.getSprites()));
+		loadNextLevel();
 
 	}
 	
@@ -46,12 +46,12 @@ public class World {
 		}
 	}
 
-	private void checkHoles() {
+	private void checkHoles() throws SlickException {
 		//Check if all holes are filled
 		if (this.sprites.getSprites().stream()
 				.filter(sprite -> sprite instanceof Hole)
 				.allMatch(s -> ((Hole) s).isFilled())) {
-		    App.exit();
+		    loadNextLevel();
 		}
 
 	}
@@ -86,6 +86,24 @@ public class World {
 			}
 		}
 
+
+	}
+
+	public void loadNextLevel() throws SlickException {
+		currentLevel++;
+		if (currentLevel >= NUM_LEVELS) {
+			App.exit();
+		}
+		String levelFileLocation = "assets/levels/" + currentLevel + ".lvl";
+
+		if (sprites == null) {
+			sprites = new SpriteCollection();
+		}
+
+		sprites.clearSprites();
+		sprites.addAll(EntityGenerator.getSpriteListFromFile(levelFileLocation));
+		sprites.addAll(EntityGenerator.generateHoles());
+		sprites.addSprite(new LifePowerUp(sprites.getSprites()));
 
 	}
 }

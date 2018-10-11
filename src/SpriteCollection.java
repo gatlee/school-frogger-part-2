@@ -42,5 +42,13 @@ public class SpriteCollection {
             sprite.update(input, delta);
         }
     }
+
+    /**
+     * Empties all sprites in collection
+     */
+    public void clearSprites() {
+        this.sprites.clear();
+
+    }
 }
 
