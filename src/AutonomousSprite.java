@@ -104,4 +104,12 @@ public abstract class AutonomousSprite extends Sprite {
             this.childSprites.remove(sprite);
         }
     }
+
+    protected void toggleMovementDirection() {
+        if (this.getMovementDirection().equals(Sprite.RIGHT)) {
+            this.setMovementDirection(Sprite.LEFT);
+        } else if (this.getMovementDirection().equals(Sprite.LEFT)) {
+            this.setMovementDirection(Sprite.RIGHT);
+        }
+    }
 }
