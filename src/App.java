@@ -70,6 +70,7 @@ public class App extends BasicGame {
     }
 
     public static void exit() {
+        System.out.println("Cya!");
         System.exit(-1);
     }
 
