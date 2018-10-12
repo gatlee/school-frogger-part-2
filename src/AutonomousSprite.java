@@ -4,15 +4,24 @@ import org.newdawn.slick.SlickException;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+/**
+ * Sprite that moves on it's own
+ */
 public abstract class AutonomousSprite extends Sprite {
     private final float OFF_SCREEN_X_POS_LEFT;
     private final float OFF_SCREEN_X_POS_RIGHT;
-    private float initialXPosition;
-    private float initialYPosition;
     private String movementDirection;
 
     private ArrayList<Sprite> childSprites = new ArrayList<>();
 
+    /**
+     * Create autonomous sprite
+     * @param imageSrc location of image
+     * @param x initial x position
+     * @param y initial y position
+     * @param direction initial movement direction
+     * @param speed speed of movement (pixels per ms)
+     */
     public AutonomousSprite(String imageSrc, float x, float y, String direction, float speed) throws SlickException {
         super(x, y, imageSrc);
         this.setSpeed(speed);
@@ -27,30 +36,27 @@ public abstract class AutonomousSprite extends Sprite {
     }
 
     /*****************GETTERS AND SETTERS*****************/
-    public float getInitialYPosition() {
-        return initialYPosition;
-    }
 
-    public void setInitialYPosition(float initialYPosition) {
-        this.initialYPosition = initialYPosition;
-    }
-
-    public void setInitialXPosition(float initialXPosition) {
-        this.initialXPosition = initialXPosition;
-    }
-
-    public float getInitialXPosition() {
-        return initialXPosition;
-    }
-
+    /**
+     * Gets movement direction
+     * @return movement direction
+     */
     public String getMovementDirection() {
         return movementDirection;
     }
 
+    /**
+     * Sets movement direction
+     * @param movementDirection movement direction (String)
+     */
     public void setMovementDirection(String movementDirection) {
         this.movementDirection = movementDirection;
     }
 
+    /**
+     * Adds child sprite to child sprites (child sprite moves with parent sprite)
+     * @param child Sprite type
+     */
     public void addChildSprite(Sprite child) {
         if (!this.childSprites.contains(child)) {
             this.childSprites.add(child);
@@ -59,6 +65,7 @@ public abstract class AutonomousSprite extends Sprite {
     }
 
     /*****************ACTUAL METHODS*****************/
+    @Override
     public void update(Input input, int delta) {
         super.update(input, delta);
         this.move(getMovementDirection(), delta);
@@ -69,7 +76,10 @@ public abstract class AutonomousSprite extends Sprite {
         }
     }
 
-    //Reset bus to starting location
+
+    /**
+     * Reset bus to other side of screen
+     */
     private void resetPosition() {
         if (this.getMovementDirection().equals(LEFT)) {
             this.setX(OFF_SCREEN_X_POS_RIGHT);
@@ -81,6 +91,7 @@ public abstract class AutonomousSprite extends Sprite {
 
     }
 
+    @Override
     public void onCollision(Sprite other) {
         if (other instanceof Player) {
             this.addChildSprite(other);
@@ -88,6 +99,10 @@ public abstract class AutonomousSprite extends Sprite {
 
     }
 
+    /**
+     * Moves child sprites with this sprite in same direction and at same speed
+     * @param delta Delta between frames in ms
+     */
     public void moveChildSprites(int delta) {
         //Prune child sprites that aren't colliding anymore
         childSprites.removeIf(s -> !this.isIntersectingWith(s));
@@ -99,13 +114,20 @@ public abstract class AutonomousSprite extends Sprite {
         }
     }
 
-    public void clearChild(Sprite sprite) {
+    /**
+     * Removes specified sprite.
+     * @param sprite Sprite type
+     */
+    public void removeChild(Sprite sprite) {
         if (this.childSprites.contains(sprite)) {
             this.childSprites.remove(sprite);
         }
     }
 
-    protected void toggleMovementDirection() {
+    /**
+     * Toggle movement direction from left to right
+     */
+    public void toggleMovementDirection() {
         if (this.getMovementDirection().equals(Sprite.RIGHT)) {
             this.setMovementDirection(Sprite.LEFT);
         } else if (this.getMovementDirection().equals(Sprite.LEFT)) {

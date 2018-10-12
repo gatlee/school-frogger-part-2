@@ -3,11 +3,17 @@ import org.newdawn.slick.SlickException;
 
 public class Bike extends AutonomousSprite {
 
-    public static final String IMAGE_SRC = "assets/bike.png";
-    public static final float SPEED = 0.2f;
+    private static final String IMAGE_SRC = "assets/bike.png";
+    private static final float SPEED = 0.2f;
     private static final float LEFT_BOUND = 24f;
     private static final float RIGHT_BOUND = 1000f;
 
+    /**
+     * Bike constructor
+     * @param x initial x position
+     * @param y initial y position
+     * @param direction movement direction
+     */
     public Bike(float x, float y, String direction) throws SlickException {
         super(IMAGE_SRC, x, y, direction, SPEED);
     }

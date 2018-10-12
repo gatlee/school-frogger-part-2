@@ -1,23 +1,32 @@
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
+/**
+ * Turtle Object
+ */
 public class Turtle extends AutonomousSprite {
 
-    public static final String IMAGE_SRC = "assets/turtles.png";
-    public static final float SPEED = 0.085f;
+    private static final String IMAGE_SRC = "assets/turtles.png";
+    private static final float SPEED = 0.085f;
 
     //Time in ms. Time adjusted to compensate for SINK_RISE_TIME.
-    public static final int TIME_ABOVE_WATER = 7000;
-    public static final int TIME_UNDERWATER = 2000;
-    public static final int CYCLE_TIME = TIME_ABOVE_WATER + TIME_UNDERWATER;
-    public static final int SINK_RISE_TIME = 1000;
+    private static final int TIME_ABOVE_WATER = 7000;
+    private static final int TIME_UNDERWATER = 2000;
+    private static final int CYCLE_TIME = TIME_ABOVE_WATER + TIME_UNDERWATER;
+    private static final int SINK_RISE_TIME = 1000;
 
     //This needs to exist since turtle is only made unrideable at END of animation
-    public static final int TIME_TO_START_SINK_ANIMATION = TIME_ABOVE_WATER - SINK_RISE_TIME;
+    private static final int TIME_TO_START_SINK_ANIMATION = TIME_ABOVE_WATER - SINK_RISE_TIME;
 
     private int timeElapsed = 0;
     private float renderDepth = 12;
 
+    /**
+     * Turtle constructor
+     * @param x initial x position
+     * @param y initial y position
+     * @param direction initial direction of movement
+     */
     public Turtle(float x, float y, String direction) throws SlickException {
         super(IMAGE_SRC, x, y, direction, SPEED);
         this.addTag(Tags.RIDEABLE);
@@ -37,7 +46,9 @@ public class Turtle extends AutonomousSprite {
     }
 
 
-
+    /**
+     * Updates visibility based on time elapsed
+     */
     private void updateVisibility() {
         int cycleStage = timeElapsed % CYCLE_TIME;
         if (cycleStage >= 0 && cycleStage <= TIME_ABOVE_WATER) {
@@ -50,6 +61,7 @@ public class Turtle extends AutonomousSprite {
 
     }
 
+    //Begin unsinking animation
     private void makeVisible(int cycleStage) {
         this.addTag(Tags.RIDEABLE);
 
@@ -62,6 +74,7 @@ public class Turtle extends AutonomousSprite {
 
     }
 
+    //Begin sinking animation
     private void makeInvisible(int cycleStage) {
         int imageHeight = this.getImageHeight();
         int timePastStart = cycleStage - TIME_TO_START_SINK_ANIMATION;

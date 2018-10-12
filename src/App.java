@@ -69,6 +69,9 @@ public class App extends BasicGame {
         app.start();
     }
 
+    /**
+     * Exits application
+     */
     public static void exit() {
         System.out.println("Cya!");
         System.exit(-1);

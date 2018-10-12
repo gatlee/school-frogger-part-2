@@ -4,6 +4,9 @@ import org.newdawn.slick.SlickException;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Power up which gives additional life to player
+ */
 public class LifePowerUp extends AutonomousSprite{
     private static final String IMG_SRC = "assets/extralife.png";
     private static final int SPEED = App.TILE_SIZE;
@@ -27,6 +30,10 @@ public class LifePowerUp extends AutonomousSprite{
     private float relativeYPos;
     private Random rand = new Random();
 
+    /**
+     * LifePowerUp Constructor
+     * @param listWithLogs List which contain eligible logs to spawn upon
+     */
     public LifePowerUp(List<Sprite> listWithLogs) throws SlickException {
         super(IMG_SRC, 0, 0, DEFAULT_DIRECTION, SPEED);
         this.isConsumed = true;
@@ -89,14 +96,12 @@ public class LifePowerUp extends AutonomousSprite{
     }
 
 
+    /**
+     * Make power up appear on specified log
+     * @param parentLog specified log for powerup to appear on
+     */
     public void appearOnLog(Log parentLog) {
         isConsumed = false;
-        /*
-        float startXLocation = parentLog.getX() - (parentLog.getImageWidth()/2f)
-                + App.TILE_SIZE/2f;
-        float startYLocation = parentLog.getY();
-        this.setXY(startXLocation, startYLocation);
-        */
         parentLog.addChildSprite(this);
         this.parentLog = parentLog;
 
@@ -104,12 +109,16 @@ public class LifePowerUp extends AutonomousSprite{
     }
 
     private void detachFromParentLog() {
-        parentLog.clearChild(this);
+        parentLog.removeChild(this);
         isConsumed = true;
         parentLog = null;
 
     }
 
+    /**
+     * Returns whether power up has been consumed
+     * @return Returns boolean value of isConsumed
+     */
     public boolean isConsumed() {
         return isConsumed;
     }
@@ -122,6 +131,7 @@ public class LifePowerUp extends AutonomousSprite{
         }
 
     }
+
     private void moveAcrossParent() {
         this.moveRelativelyOneTile(this.getMovementDirection());
         if (!this.isIntersectingWith(parentLog)) {

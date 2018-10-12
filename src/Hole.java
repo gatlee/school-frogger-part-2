@@ -6,6 +6,12 @@ public class Hole extends Sprite implements Collidable {
 
     private boolean isFilled;
 
+    /**
+     * Hole constructor
+     * @param x x position
+     * @param y y position
+     * @throws SlickException
+     */
     public Hole(float x, float y) throws SlickException {
         super(x, y, IMG_SRC);
         this.isFilled = false;
@@ -25,9 +31,8 @@ public class Hole extends Sprite implements Collidable {
         }
     }
 
-    /*
+    /**
      * Checks if hole has been filled
-     *
      * @return true or false if it has been filled
      */
     public boolean isFilled() {

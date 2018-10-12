@@ -2,10 +2,16 @@ import org.newdawn.slick.SlickException;
 import utilities.BoundingBox;
 
 public class Bulldozer extends AutonomousSprite {
-    public static final String IMAGE_SRC = "assets/bulldozer.png";
-    public static final float SPEED = 0.05f;
+    private static final String IMAGE_SRC = "assets/bulldozer.png";
+    private static final float SPEED = 0.05f;
     private static final float FRONT_FUZZ = 3f;
 
+    /**
+     * Bulldozer constructor
+     * @param x initial x position
+     * @param y initial y position
+     * @param direction movement direction
+     */
     public Bulldozer(float x, float y, String direction) throws SlickException {
         super(IMAGE_SRC, x, y, direction, SPEED);
     }
@@ -23,6 +29,11 @@ public class Bulldozer extends AutonomousSprite {
         }
     }
 
+    /**
+     * Checks if other sprite is pressed against front of Bulldozer
+     * @param other Sprite type being checked
+     * @return True if against front. False otherwise
+     */
     private boolean isCollidingWithFront(Sprite other) {
         //The "Front" depends on movement direction
         float collisionDepth = 0;

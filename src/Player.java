@@ -2,6 +2,9 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import utilities.BoundingBox;
 
+/**
+ * Player class that user controls
+ */
 public class Player extends Sprite implements Collidable {
     //Constants
     private static final String PLAYER_IMAGE_SRC = "assets/frog.png";
@@ -18,7 +21,11 @@ public class Player extends Sprite implements Collidable {
     private Lives lives;
 
 
-    /*****************CONSTRUCTORS*****************/
+    /**
+     * Player constructor
+     * @param x initial x position
+     * @param y initial y position
+     */
     Player(float x, float y) throws SlickException {
         super(x, y, PLAYER_IMAGE_SRC);
 
@@ -29,13 +36,18 @@ public class Player extends Sprite implements Collidable {
         this.lives = new Lives(STARTING_LIVES);
     }
 
-    Player (Player other) throws SlickException {
+    /**
+     * Player constructor that copies other
+     * @param other Another player sprite to copy
+     */
+    Player(Player other) throws SlickException {
         this(other.getX(), other.getY());
 
     }
 
     /*****************METHODS*****************/
 
+    @Override
     public void update(Input input, int delta) {
         // How can this one method deal with different types of sprites?
         super.update(input, delta);
@@ -52,7 +64,7 @@ public class Player extends Sprite implements Collidable {
         lives.render();
     }
 
-    //Returns false if any part of object is out of bounds
+    @Override
     public boolean isAcceptableMovement(float x, float y) {
         return !(x - (this.getImageWidth() / 2f) < 0 ||
                 x + (this.getImageWidth() / 2f) > SCREEN_WIDTH ||
@@ -61,7 +73,7 @@ public class Player extends Sprite implements Collidable {
 
     }
 
-    //Exits if collides with Water or Bus
+    @Override
     public void onCollision(Sprite other) {
         if (other instanceof Water || other instanceof Bus
         || other instanceof Bike || other instanceof RaceCar) {
@@ -83,6 +95,9 @@ public class Player extends Sprite implements Collidable {
 
     }
 
+    /**
+     * Kill player event
+     */
     public void killPlayer() {
         this.setXY(initialX, initialY);
         if (lives.getNumLives() <= 0) {
@@ -94,7 +109,7 @@ public class Player extends Sprite implements Collidable {
     }
 
 
-    //Returns true if bounding boxes intersect
+    @Override
     public boolean isIntersectingWith(Collidable other) {
         BoundingBox otherBoundingBox = other.getBoundingBox();
         return (getBoundingBox().intersects(otherBoundingBox));
